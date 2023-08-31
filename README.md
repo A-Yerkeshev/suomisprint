@@ -1,8 +1,21 @@
-# React + Vite
+# Project Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Title:
+SuomiSprint
 
-Currently, two official plugins are available:
+### Authors
+[Anna Linden](https://github.com/AnnaLinden), [Trang Vu](https://github.com/cindy3377), [Mamita Gurung](https://github.com/Mamita123), [Arman Yerkeshev](https://github.com/A-Yerkeshev)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Target users and other stakeholders:
+
+Customers, course providers, site administrator, platform owner
+
+### Main functionality of the application:
+
+The application serves as a platform for online Finnish language courses. It features detailed course descriptions, pricing, an "About Us" section, and contact information.
+
+The platform provides a possibility for course providers to publish courses they offer. Customers view the course selection and enroll to the courses they want. Course providers can see who has enrolled on their course. Customers need to register and sign in (and pay?)  before they can be enrolled on the course.
+
+The application also displays the number of available slots and the respective dates for each course. Reviews from previous participants are available to assist new users in course selection.
+
+After logging in, users can enroll in courses and access detailed information about the course they are currently enrolled in. The platform also allows users to review their past course history. Additionally, contact details of the assigned teacher are made available to enrolled students.
