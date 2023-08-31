@@ -19,3 +19,6 @@ The platform provides a possibility for course providers to publish courses they
 The application also displays the number of available slots and the respective dates for each course. Reviews from previous participants are available to assist new users in course selection.
 
 After logging in, users can enroll in courses and access detailed information about the course they are currently enrolled in. The platform also allows users to review their past course history. Additionally, contact details of the assigned teacher are made available to enrolled students.
+
+---
+User stories can be found in out [trello](https://trello.com/b/q46yXEDs/group-7-autumn-2023)
