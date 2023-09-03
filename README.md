@@ -20,6 +20,9 @@ The application also displays the number of available slots and the respective d
 
 After logging in, users can enroll in courses and access detailed information about the course they are currently enrolled in. The platform also allows users to review their past course history. Additionally, contact details of the assigned teacher are made available to enrolled students.
 
+### Prototype in Figma
+https://www.figma.com/file/GTU2u7swBnTu49ACFexkrY/prototype?type=design&node-id=0-1&mode=design&t=YVn3P8Gfu6CJREjR-0
+
 ### User stories
 
 *From customer’s perspective:*
