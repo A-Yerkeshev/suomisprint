@@ -1,0 +1,31 @@
+[
+    {
+      "level": "From A1 to A2",
+      "name": "Finnish For Beginners",
+      "img": "a-woman-in-helsinki",
+      "description": "Learn the basics of Finnish language.",
+      "price": "€200"
+    },
+    {
+      "level": "B1-B2",
+      "name": "Speaking Club",
+      "img": "woman-with-laptop",
+      "description": "Improve your speaking skills.",
+      "price": "€100"
+    },
+    {
+      "level": "B1-B2",
+      "name": "YKI Mastery",
+      "img": "yki",
+      "description": "Unlock success in the YKI exam.",
+      "price": "€200"
+    },
+    {
+      "level": "C1",
+      "name": "Finnish for professionals",
+      "img": "woman-with-a-book",
+      "description": "Take your Finnish to the next level",
+      "price": "€200"
+    }
+  ]
+  
