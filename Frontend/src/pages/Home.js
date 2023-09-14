@@ -1,6 +1,8 @@
 // Home.js
 import '../styles/App.css';
 import manInTheSenSquare from '../img/man-in-the-sen-square.png';
+import womanImage from '../img/woman-image.JPG';
+import Button from '../components/Button';
 
 function Home() {
   return (
@@ -14,12 +16,17 @@ function Home() {
         </div>
         <div className="small-text">Learn Finnish online in small groups</div>
         <div className="two-buttons">
-          <button className="coral-button">Join Us</button>
-          <button className="blue-button">Learn More</button>
+          <Button color="coral" text="Join Us" />
+          <Button color="blue" text="Learn More" />
         </div>
       </div>
       <div className="right-section">
-      <img src={manInTheSenSquare} alt="Man in the Sen Square" />
+        
+          <div className="coral-square"></div>
+    
+          <img className="man-image" src={manInTheSenSquare} alt="Man in the Sen Square" />
+          <img className="woman-image" src={womanImage} alt="Woman" />
+        
       </div>
     </div>
   );
