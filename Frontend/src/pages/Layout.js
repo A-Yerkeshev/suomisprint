@@ -1,9 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import "../styles/App.css";
+import "../styles/Navbar.css";
+import Button from '../components/Button';
 
 const Layout = () => {
   return (
     <>
+    <div className="main-wrapper">
    <nav>
   <div className="nav-logo">SuomiSprint</div>
   <ul className="nav-links">
@@ -12,17 +15,22 @@ const Layout = () => {
           <li><Link to="/about">About</Link></li>
           <li><Link to="/contact">Contact</Link></li>
         </ul>
-  <div>
-    <button className="nav-button">Login</button>
-    <button className="nav-button nav-button-join coral-button">Join Us</button>
-  </div>
+        <div className="two-buttons">
+          <Button color="coral" text="Join Us" />
+          <Button color="blue" text="Learn More" />
+        </div>
 </nav>
 
       <main className="page-content">
         <Outlet />
       </main>
+      </div>
+      <footer className="footer">
+        SuomiSprint &copy; 2023
+      </footer>
     </>
   );
 };
+
 
 export default Layout;
