@@ -17,6 +17,12 @@ nav, .nav-button, .nav-button-join {
   .nav-links a {
     text-decoration: none;
     color: var(--white);
+    display: inline-block;
+    transition: all 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    transform: scale(1.2);
   }
   
   .nav-links li {
@@ -40,7 +46,7 @@ nav, .nav-button, .nav-button-join {
       margin-right: 0;
       justify-content: center; 
     }
-  
+    
     .home-container {
       grid-template-columns: 1fr;
     }

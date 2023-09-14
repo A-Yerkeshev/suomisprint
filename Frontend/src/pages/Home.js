@@ -1,7 +1,7 @@
 // Home.js
 import '../styles/App.css';
 import manInTheSenSquare from '../img/man-in-the-sen-square.png';
-import womanImage from '../img/woman-image.JPG';
+import womanImage from '../img/woman-image.png';
 import Button from '../components/Button';
 
 function Home() {

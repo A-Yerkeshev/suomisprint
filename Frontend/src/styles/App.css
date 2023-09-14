@@ -140,6 +140,8 @@ nav {
   height: 531px;
   left: 80px;
   top: 40px;
+  border: 3px solid var(--white); 
+  border-radius: 15px; 
 }
 
 .woman-image {
@@ -147,6 +149,8 @@ nav {
   height: auto;
   left: 0px;
   top: 340px;
+  border: 3px solid var(--white); 
+  border-radius: 15px; 
 }
 
 /* Media Queries for half computer screen */
