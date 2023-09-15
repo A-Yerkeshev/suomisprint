@@ -6,6 +6,8 @@ const courseSchema = new Schema({
   title: {type: String, required: true},
   provider_id: {type: Schema.ObjectId}, // Will be required later
   description: {type: String},
+  short_description: {type: String},
+  image_url: {type: String},
   price: {type: Number, required: true},
   max_students: {type: Number},
   enrolled: {type: Number},
