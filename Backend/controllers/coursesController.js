@@ -9,7 +9,19 @@ const list = async (req, res) => {
 
 // GET /courses/:id
 const get = async (req, res) => {
-  // Your code here
+  const {id}  = req.params;
+
+  if (!validId(id)) {
+    return res.status(400).json({error: `${id} is not a valid course id.`});
+  }
+
+  const course = await Course.findById(id);
+
+  if (!course) {
+    return res.status(404).json({error: `Course with id ${id} was not found.`});
+  }
+
+  res.status(200).json(course);
 }
 
 // POST /courses
@@ -49,7 +61,7 @@ const create = async (req, res) => {
   }
 
   if (!validId(providerId)) {
-    res.status(400).json({error: `${providerId} is not valid value for providerId`});
+    res.status(400).json({error: `${providerId} is not valid value for providerId.`});
     return;
   }
 
@@ -71,8 +83,8 @@ const create = async (req, res) => {
 
     const course = await Course.create(payload);
     res.status(200).json(course);
-  } catch (error) {
-    res.status(400).json({error: error.message });
+  } catch (err) {
+    res.status(500).json({error: `Failed to save new course. Error: `});
   }
 }
 
