@@ -8,14 +8,6 @@ import Contact from './pages/Contact';
 import Layout from "./pages/Layout";
 
 function App() {
-const fetchCourses = async() => {
-  const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/courses');
-  const courses = await res.json();
-  console.log(courses);
-}
-
-fetchCourses();
-
 return (
   <BrowserRouter>
       <Routes>
