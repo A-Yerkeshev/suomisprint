@@ -1,0 +1,91 @@
+/* CourseDescription.css */
+
+
+.container {
+    padding: 30px;
+    border-radius: 20px;
+    margin: 40px;
+    background-color: rgb(13, 43, 73);
+
+  }
+  
+  h2 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 60px;
+
+  }
+  
+  p {
+    margin-bottom: 60px;
+    color: white;
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+
+
+
+  }
+  
+  h3 {
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    color: white;
+
+  }
+
+  h4{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+button {
+    padding: 15px 25px;
+    color: white;
+    background-color: rgb(214, 95, 52);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease;
+    font-size:14px;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #b32d00;
+  }
+
+
+  
+.container {
+    display: flex;
+    justify-content: space-between; /* Creates space between columns */
+  }
+  
+.column {
+    flex: 1; /* Makes each column take equal space */
+    margin: 10px; /* Add margin between columns for spacing */
+  }
+.womanimg{
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below the image */
+    border-radius: 40px;
+}
+.right-column::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px; /* Adjust this width as needed */
+    height: 100%;
+    z-index: -1; /* Place it behind the content */
+  }
+
+  
+  
+  

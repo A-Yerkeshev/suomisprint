@@ -1,7 +1,5 @@
 /* Default button style */
 .button {
-    width: 130px;  /* Add this line */
-  height: 50px;  /* Add this line */
     padding: 15px 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
