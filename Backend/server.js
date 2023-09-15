@@ -1,16 +1,17 @@
+require('dotenv').config();
 const connectDB = require('./config/db');
-const express = require('express')
-const blogRoutes = require('./routes/blogs')
+const express = require('express');
+const blogRoutes = require('./routes/blogs');
 
 // express app
-const app = express()
+const app = express();
 
-const port=3001;
+const port = process.env.PORT || 3001;
 
 connectDB();
 
 // middleware
-app.use(express.json())
+app.use(express.json());
 
 
 app.get('/', (req, res) => res.send('API Running!'));
