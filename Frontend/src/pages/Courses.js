@@ -27,6 +27,7 @@ function Courses() {
       const courses = await res.json();
 
       setCourses(courses);
+      console.log(courses);
     }
 
     fetchCourses();
@@ -37,10 +38,10 @@ function Courses() {
       <h1 className="heading">Our Courses</h1>
       {courses.map((course, index) => (
         <Card
-          key={course._id}
+          key={course.Id}
           level={course.level}
           name={course.title}
-          img={course.image_url}
+          img={course.imageUrl}
           description={course.description}
           price={course.price}
         />

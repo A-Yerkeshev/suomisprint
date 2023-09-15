@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 // GET /api/courses
 const list = async (req, res) => {
   const courses = await Course.find({}).sort({updatedAt: -1});
-  res.status(200).json(courses);
+  const camelCased = courses.map((course) => toCamelCase(course.toObject()));
+
+  res.status(200).json(camelCased);
 }
 
 // GET /api/courses/:id
@@ -23,7 +25,9 @@ const get = async (req, res) => {
     return;
   }
 
-  res.status(200).json(course);
+  const camelCased = toCamelCase(course.toObject());
+
+  res.status(200).json(camelCased);
 }
 
 // DELETE /api/courses/:id
@@ -89,20 +93,20 @@ const create = async (req, res) => {
 
   // Save to the database
   try {
-    const payload = {
+    const payload = toUnderscoreCase({
       title,
-      provider_id: providerId,
+      providerId,
       description,
-      short_description: shortDescription,
-      image_url: imageUrl,
+      shortDescription,
       level,
       price,
-      max_students: maxStudents,
-      start_date: startDate,
-      end_date: endDate,
-      start_time: startTime,
-      end_time: endTime
-    }
+      imageUrl,
+      maxStudents,
+      startDate,
+      endDate,
+      startTime,
+      endTime
+    });
 
     const course = await Course.create(payload);
     res.status(200).json(course);
@@ -156,21 +160,20 @@ const update = async (req, res) => {
 
   // Update course
   try {
-    const payload = {
+    const payload = toUnderscoreCase({
       title,
-      provider_id: providerId,
+      providerId,
       description,
-      short_description: shortDescription,
-      image_url: imageUrl,
+      shortDescription,
       level,
       price,
-      max_students: maxStudents,
-      start_date: startDate,
-      end_date: endDate,
-      start_time: startTime,
-      end_time: endTime
-    }
-    Object.keys(payload).forEach(key => payload[key] === undefined ? delete payload[key] : {});
+      imageUrl,
+      maxStudents,
+      startDate,
+      endDate,
+      startTime,
+      endTime
+    });
 
     const course = await Course.findOneAndUpdate({_id: id}, payload, {new: true});
 
@@ -197,6 +200,32 @@ const validId = (id) => {
   } else {
     return false;
   }
+}
+
+const toUnderscoreCase = (obj) => {
+  const res = {};
+
+  for (const [key, val] of Object.entries(obj)) {
+    if (val) {
+      const underscored = key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => ("_" + y.toLowerCase())).replace(/^_/, "");
+      res[underscored] = val;
+    }
+  }
+
+  return res;
+}
+
+const toCamelCase = (obj) => {
+  const res = {};
+
+  for (const [key, val] of Object.entries(obj)) {
+    if (val) {
+      const camelCased = key.replace(/_([a-z])/g, (g) => (g[1].toUpperCase()));
+      res[camelCased] = val;
+    }
+  }
+
+  return res;
 }
 
 module.exports = {
