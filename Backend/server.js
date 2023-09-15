@@ -2,6 +2,7 @@ require('dotenv').config();
 const connectDB = require('./config/db');
 const express = require('express');
 const coursesRouter = require('./routes/coursesRouter');
+const cors = require('cors');
 
 // express app
 const app = express();
@@ -12,7 +13,7 @@ connectDB();
 
 // middleware
 app.use(express.json());
-
+app.use(cors());
 
 app.get('/', (req, res) => res.send('API Running!'));
 
