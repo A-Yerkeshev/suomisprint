@@ -71,7 +71,7 @@ function Contact(props) {
             value={comments}
           />
         </div>
-        <button>Submit</button>
+        <button class="btn-submit">Submit</button>
       </form>
         <div>
           <h3> Company Information</h3>
