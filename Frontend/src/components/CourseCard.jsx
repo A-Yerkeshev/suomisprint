@@ -11,7 +11,7 @@ function Card(props) {
         <p>{props.level}</p>
         <h2>{props.name}</h2>
         <p>{props.description}</p>
-        <p>{props.price}</p>
+        <p>&euro;{props.price}</p>
       </div>
     </div>
   );
