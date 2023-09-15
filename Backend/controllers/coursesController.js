@@ -109,9 +109,23 @@ const create = async (req, res) => {
   }
 }
 
-// Update blog using PATCH
+// PATCH /api/courses/:id
 const update = async (req, res) => {
-  // Your code here
+  const {id} = req.params;
+
+  if (!validId(id)) {
+    res.status(400).json({error: `${id} is not a valid course id.`});
+    return;
+  }
+
+  const course = await Course.findOneAndUpdate({_id: id}, {...req.body}, {new: true});
+
+  if(!course) {
+    res.status(404).json({error: `Course with id ${id} was not found.`});
+    return;
+  }
+
+  res.status(200).json(course);
 }
 
 const validId = (id) => {
