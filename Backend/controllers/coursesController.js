@@ -51,6 +51,7 @@ const create = async (req, res) => {
     providerId,
     description,
     shortDescription,
+    level,
     price,
     imageUrl,
     maxStudents,
@@ -81,7 +82,7 @@ const create = async (req, res) => {
     return;
   }
 
-  if (!validId(providerId)) {
+  if (providerId && !validId(providerId)) {
     res.status(400).json({error: `${providerId} is not valid value for providerId.`});
     return;
   }
@@ -94,6 +95,7 @@ const create = async (req, res) => {
       description,
       short_description: shortDescription,
       image_url: imageUrl,
+      level,
       price,
       max_students: maxStudents,
       start_date: startDate,

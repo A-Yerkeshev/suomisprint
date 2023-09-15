@@ -7,6 +7,7 @@ const courseSchema = new Schema({
   provider_id: {type: Schema.ObjectId}, // Will be required later
   description: {type: String},
   short_description: {type: String},
+  level: {type: String},
   image_url: {type: String},
   price: {type: Number, required: true},
   max_students: {type: Number},
