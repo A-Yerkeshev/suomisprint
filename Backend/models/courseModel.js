@@ -13,6 +13,6 @@ const courseSchema = new Schema({
   end_date: {type: Date, required: true},
   start_time: {type: Number, required: true},
   end_time: {type: Number, required: true}
-})
+}, {timestamps: true})
 
 module.exports = mongoose.model('Course', courseSchema)
