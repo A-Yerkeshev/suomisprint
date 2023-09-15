@@ -41,7 +41,7 @@
     color: white;
   }
   
-button {
+.add-course {
     padding: 15px 25px;
     color: white;
     background-color: rgb(214, 95, 52);
@@ -55,7 +55,7 @@ button {
     border-radius: 5px;
   }
   
-  button:hover {
+  .add-course:hover {
     background-color: #b32d00;
   }
 

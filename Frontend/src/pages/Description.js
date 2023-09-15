@@ -26,7 +26,7 @@ const CourseDescription = () => {
             in everyday Finnish conversations.
           </p>
         </div>
-        <button className="add-course-button">Add to Cart</button>
+        <button class="add-course">Add to Cart</button>
       </div>
     </div>
   );
