@@ -65,8 +65,8 @@ const create = async (req, res) => {
     endTime} = req.body;
 
   // Validate presence of data
-  if (!title || !price || !startDate || !endDate || !startTime || !endTime) {
-    res.status(400).json({error: "Course must have title, price, startDate, endDate, startTime and endTime properties."});
+  if (!title || !description || !shortDescription || !level) {
+    res.status(400).json({error: "Course must have title, description, shortDescription and level properties."});
     return;
   }
 
@@ -107,6 +107,8 @@ const create = async (req, res) => {
       startTime,
       endTime
     });
+
+    payload.enrolled = [];
 
     const course = await Course.create(payload);
     res.status(200).json(course);
