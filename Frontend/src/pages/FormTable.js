@@ -1,38 +1,82 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/FormTable.css"; // Import the CSS file
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-function CourseForm() {
-  const [state, setState] = useState({
-    // Define initial course field values in state
-    title: "",
-    shortDescription: "",
-    description: "",
-    providerId: "",
-    startDate: "",
-    endDate: "",
-    enrollmentRequirements: "",
-    price: "",
-    maxStudents: "",
-    imageUrl: "",
-    level: ""
+function CourseForm(props) {
+  const [course, setCourse] = useState({
+    providerId: '',
+    title: '',
+    description: '',
+    shortDescription: '',
+    level: '',
+    price: '',
+    imageUrl: '',
+    maxStudents: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: ''
   });
 
   const redirect = useNavigate();
+  const location = useLocation();
+
+  // Determine whether it is a create or edit page
+  const uriParts = location.pathname.split('/');
+  const action = (uriParts[1] === 'editcourse') ? 'PATCH' : 'POST';
+  let id;
+
+  if (action === 'PATCH') {
+    id = uriParts[2];
+  }
+
+  // If /editcourse/:id - get data of course being edited
+  useEffect(() => {
+    if (action === 'PATCH') {
+      const fetchCourse = async () => {
+        try {
+          const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/courses/' + id);
+
+          if (!res.ok) {
+            redirect('/');
+          }
+
+          const course = await res.json();
+          setCourse(course);
+        } catch(err) {
+          console.log(err);
+        }
+      }
+
+      fetchCourse();
+
+      document.getElementById('form-submit').textContent = 'Update';
+    }
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setCourse({
+      ...course,
+      [name]: value
+    });
+  }
 
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
-
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/courses', {
-        method: 'POST',
+      const endpoint = (action === 'PATCH') ? `/api/courses/${id}` : '/api/courses';
+
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + endpoint, {
+        method: action,
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(Object.fromEntries(formData.entries())),
+        body: JSON.stringify(course),
       });
 
       if (!res.ok) {
@@ -49,13 +93,15 @@ function CourseForm() {
   return (
     <div className="form-table">
       <h1 className="course-heading">Create new course</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div>
           <label htmlFor="title">Title:</label>
           <input
             type="text"
             id="title"
             name="title"
+            value={course.title}
+            onChange={handleChange}
             required
           />
         </div>
@@ -66,6 +112,8 @@ function CourseForm() {
             type="text"
             id="imageUrl"
             name="imageUrl"
+            value={course.imageUrl}
+            onChange={handleChange}
             required
           />
         </div>
@@ -75,6 +123,8 @@ function CourseForm() {
             <textarea
               id="shortDescription"
               name="shortDescription"
+              value={course.shortDescription}
+              onChange={handleChange}
               required
             />
           </div>
@@ -84,6 +134,8 @@ function CourseForm() {
             <textarea
               id="description"
               name="description"
+              value={course.description}
+              onChange={handleChange}
               required
             />
           </div>
@@ -94,6 +146,8 @@ function CourseForm() {
               type="text"
               id="level"
               name="level"
+              value={course.level}
+              onChange={handleChange}
               required
             />
           </div>
@@ -133,6 +187,8 @@ function CourseForm() {
               type="number"
               id="price"
               name="price"
+              value={course.price}
+              onChange={handleChange}
               // required
             />
           </div>
@@ -144,12 +200,14 @@ function CourseForm() {
               type="number"
               id="maxStudents"
               name="maxStudents"
+              value={course.maxStudents}
+              onChange={handleChange}
               // required
             />
           </div>
 
         <div>
-          <button className="course-button" type="submit">
+          <button id="form-submit" className="course-button" type="submit" onClick={handleSubmit}>
             Create
           </button>
         </div>
