@@ -25,9 +25,7 @@ const get = async (req, res) => {
     return;
   }
 
-  const camelCased = toCamelCase(course.toObject());
-
-  res.status(200).json(camelCased);
+  res.status(200).json(toCamelCase(course.toObject()));
 }
 
 // DELETE /api/courses/:id
@@ -46,7 +44,7 @@ const remove = async (req, res) => {
     return;
   }
 
-  res.status(200).json(course);
+  res.status(200).json(toCamelCase(course.toObject()));
 }
 
 // POST /api/courses
@@ -111,7 +109,7 @@ const create = async (req, res) => {
     payload.enrolled = [];
 
     const course = await Course.create(payload);
-    res.status(200).json(course);
+    res.status(200).json(toCamelCase(course.toObject()));
   } catch (err) {
     res.status(500).json({error: `Failed to save new course. Error: ${err}`});
   }
@@ -184,7 +182,7 @@ const update = async (req, res) => {
       return;
     }
 
-    res.status(200).json(course);
+    res.status(200).json(toCamelCase(course.toObject()));
   } catch (err) {
     res.status(500).json({error: `Failed to save updates to the course. Error: ${err}`});
   }
