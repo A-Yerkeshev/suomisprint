@@ -3,16 +3,16 @@ CourseForm.css
 /* Style the form container */
 
 
-/* .form-table
+.form-table
 {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-} */
+}
 
-div {
+.form-table div {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
@@ -20,7 +20,7 @@ div {
   }
   
   /* Style form labels */
-  label {
+  .course-label {
     display: block;
     margin-bottom: 8px;
   }
@@ -37,9 +37,7 @@ div {
     font-size: 16px;
   }
   
-  .button {
-    width: 130px;  /* Add this line */
-  height: 50px;  /* Add this line */
+  .course-button {
     padding: 15px 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -48,11 +46,17 @@ div {
     transition: background-color 0.3s ease;
     transition: transform 0.3s ease;
     border-radius: 5px;
+    background-color: #ff6551;
+    color: white
   }
   
+  .course-button:hover {
+    background-color: #b32d00;
+    transform: scale(1.1);
+  }
 
 
-  h1 {
+.course-heading {
     text-align: center;
   font-family: 'Montserrat', sans-serif;
   }

@@ -3,21 +3,21 @@ import "../styles/Description.css"; // Import the CSS file
 // eslint-disable-next-line
 const CourseDescription = () => {
   return (
-    <div className="container">
-      <div className="column left-column">
+    <div class="container">
+      <div class="column left-column">
         <img
-          className="womanimg"
+          class="womanimg"
           src={require("../img/a-woman-in-helsinki.png")}
           alt="a women in helsinki"
         />
       </div>
-      <div className="column right-column">
-        <h2>Finnish For Beginners</h2>
-        <h4>A1 to A2</h4>
-        <h3>$200</h3>
+      <div class="column right-column">
+        <h2 class="h2-description">Finnish For Beginners</h2>
+        <h4 class="h4-description">A1 to A2</h4>
+        <h3 class="h3-description">$200</h3>
         <h4>DESCRIPTION</h4>
         <div>
-          <p>
+          <p class="p-description">
             Enroll in our 6-month course tailored for complete beginners.
             Utilizing the popular "Suomen Mestari 1" textbook as our guide, this
             course offers weekly interactive lessons, quizzes, and a dedicated
@@ -26,7 +26,7 @@ const CourseDescription = () => {
             in everyday Finnish conversations.
           </p>
         </div>
-        <button className="add-course-button">Add to Cart</button>
+        <button class="add-course-button">Add to Cart</button>
       </div>
     </div>
   );
