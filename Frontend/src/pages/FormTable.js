@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/FormTable.css"; // Import the CSS file
+import { useState, useEffect } from "react";
 
 class CourseForm extends Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class CourseForm extends Component {
       price: "",
       maxStudents: "",
     };
+
+    console.log(props);
   }
 
   // Handle input changes and update state
@@ -26,10 +29,26 @@ class CourseForm extends Component {
   };
 
   // Handle form submission
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    // Do something with the course data, e.g., send it to an API
-    console.log("Course created:", this.state);
+
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/courses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+
+      if (!res.ok) {
+        throw new Error(await res.json().error);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -51,8 +70,8 @@ class CourseForm extends Component {
           <div>
             <label htmlFor="description">Short description:</label>
             <textarea
-              id="shortdescription"
-              name="shortdescription"
+              id="shortDescription"
+              name="shortDescription"
               value={this.state.shortdescription}
               onChange={this.handleInputChange}
               // required

@@ -18,6 +18,7 @@ function App() {
           <Route path="About" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="addcourse" element={<CourseForm />} />
+          <Route path="editcourse/:id" element={<CourseForm />} />
           <Route path="coursedescription" element={<CourseDescription />} />
         </Route>
       </Routes>
