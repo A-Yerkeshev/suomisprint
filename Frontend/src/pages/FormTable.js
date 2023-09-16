@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../styles/FormTable.css"; // Import the CSS file
-import { useState, useEffect } from "react";
 
 class CourseForm extends Component {
   constructor(props) {
@@ -8,17 +7,17 @@ class CourseForm extends Component {
     this.state = {
       // Define initial course field values in state
       title: "",
-      shortdescription: "",
+      shortDescription: "",
       description: "",
-      providerid: "",
-      startdate: "",
-      enddate: "",
+      providerId: "",
+      startDate: "",
+      endDate: "",
       enrollmentRequirements: "",
       price: "",
       maxStudents: "",
+      imageUrl: "",
+      level: ""
     };
-
-    console.log(props);
   }
 
   // Handle input changes and update state
@@ -47,7 +46,8 @@ class CourseForm extends Component {
       });
 
       if (!res.ok) {
-        throw new Error(await res.json().error);
+        const e = await res.json();
+        throw new Error(e.error);
       }
     } catch (err) {
       console.log(err);
@@ -56,8 +56,8 @@ class CourseForm extends Component {
 
   render() {
     return (
-      <div class="form-table">
-        <h1 class="course-heading">Create new course</h1>
+      <div className="form-table">
+        <h1 className="course-heading">Create new course</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="title">Title:</label>
@@ -71,28 +71,29 @@ class CourseForm extends Component {
             />
           </div>
 
-          <div class="">
-            <label htmlFor="providerid">Provider ID:</label>
+          <div className="">
+            <label htmlFor="imageUrl">Image url:</label>
             <input
               type="text"
-              id="providerid"
-              name="providerid"
-              value={this.state.providerid}
+              id="imageUrl"
+              name="imageUrl"
+              value={this.state.imageUrl}
               onChange={this.handleInputChange}
               required
             />
           </div>
 
           <div>
-            <label htmlFor="shortdescription">Short description:</label>
+            <label htmlFor="shortDescription">Short description:</label>
             <textarea
               id="shortDescription"
               name="shortDescription"
               value={this.state.shortdescription}
               onChange={this.handleInputChange}
-              // required
+              required
             />
           </div>
+
           <div>
             <label htmlFor="description">Full description:</label>
             <textarea
@@ -100,7 +101,19 @@ class CourseForm extends Component {
               name="description"
               value={this.state.description}
               onChange={this.handleInputChange}
-              // required
+              required
+            />
+          </div>
+
+          <div className="">
+            <label htmlFor="level">Level:</label>
+            <input
+              type="text"
+              id="level"
+              name="level"
+              value={this.state.level}
+              onChange={this.handleInputChange}
+              required
             />
           </div>
 
@@ -125,7 +138,7 @@ class CourseForm extends Component {
               onChange={this.handleInputChange}
               // required
             />
-          </div> */}
+          </div>
           <div>
             <label htmlFor="enrollmentRequirements">
               Enrollment requirements:
@@ -138,7 +151,7 @@ class CourseForm extends Component {
               onChange={this.handleInputChange}
               // required
             />
-          </div>
+          </div> */}
           <div>
             <label htmlFor="price">Price:</label>
             <input
@@ -151,7 +164,7 @@ class CourseForm extends Component {
             />
           </div>
           <div>
-            <label class="course-label" htmlFor="maxStudents">
+            <label className="course-label" htmlFor="maxStudents">
               Max Students:
             </label>
             <input
@@ -164,7 +177,7 @@ class CourseForm extends Component {
             />
           </div>
           <div>
-            <button class="course-button" type="submit">
+            <button className="course-button" type="submit">
               Create
             </button>
           </div>

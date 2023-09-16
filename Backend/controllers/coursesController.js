@@ -72,15 +72,15 @@ const create = async (req, res) => {
 
   // Validate data types
   try {
-    price = parseFloat(price);
+    if (price) { price = parseFloat(price); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert price/maxStudents/startTime/endTime into a number. Error: ${err}`});
     return;
   }
 
   try {
-    startDate = new Date(JSON.parse(startDate));
-    endDate = new Date(JSON.parse(endDate));
+    if (startDate) { startDate = new Date(JSON.parse(startDate)); }
+    if (endDate) { endDate = new Date(JSON.parse(endDate)); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;
