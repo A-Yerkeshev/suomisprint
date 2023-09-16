@@ -41,7 +41,7 @@ select {
     height: 35px;
 }
 
-button {
+.btn-submit{
     background-color:007bff;
     color:rgb(159, 154, 149);
     padding: 10px 20px;
@@ -50,8 +50,9 @@ button {
     cursor: pointer;
     font-size:16px;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
+.btn-submit:hover {
     background-color: #0056b3;
 }
