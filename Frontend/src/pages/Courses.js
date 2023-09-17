@@ -21,22 +21,26 @@ function Courses() {
   }, []);
 
   return (
-    <div className="card-container">  {/* Updated this line */}
-      <h1 className="heading">Our Courses</h1>
-      {courses.map((course, index) => (
-        <Card
-          key={course.Id}
-          id={course.Id}
-          level={course.level}
-          name={course.title}
-          img={course.imageUrl}
-          description={course.description}
-          price={course.price}
-          courses={courses}
-          setCourses={setCourses}
-        />
-      ))}
+    <>
+      <div className="heading-container">
+      <h1 className="courses-heading">Our Courses</h1>
     </div>
+      <div className="card-container">
+        {courses.map((course, index) => (
+          <Card
+            key={course.Id}
+            id={course.Id}
+            level={course.level}
+            name={course.title}
+            img={course.imageUrl}
+            description={course.description}
+            price={course.price}
+            courses={courses}
+            setCourses={setCourses}
+          />
+        ))}
+      </div>
+    </>
   );
 }
 
