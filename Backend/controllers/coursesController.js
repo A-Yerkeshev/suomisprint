@@ -77,8 +77,13 @@ const create = async (req, res) => {
   }
 
   try {
+<<<<<<< Updated upstream
     if (startDate) { startDate = new Date(JSON.parse(startDate)); }
     if (endDate) { endDate = new Date(JSON.parse(endDate)); }
+=======
+    startDate = new Date(startDate);
+  endDate = new Date(endDate);
+>>>>>>> Stashed changes
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;

@@ -1,53 +1,53 @@
 :root {
-    --dark-blue: #26335D;
-    --coral: #FF6551;
-    --white: #FEFFFE;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .card {
-    width: 240px;
-    height: 600px;
-    margin: 10px;
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .top-card img {
-    width: 240px;
-    height: 300px;
-    object-fit: cover;
-  }
-
-  .bottom-card {
-    text-align: center;
-    color: black;
-  }
-
-  .bottom-card p:first-child {
-    color: var(--coral);
-  }
-
-  .bottom-card {
-  text-align: center;
-  color: black;
+  --dark-blue: #26335D;
+  --coral: #FF6551;
+  --white: #FEFFFE;
 }
 
-.bottom-card p:first-child {
-  color: var(--coral);
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.bottom-card h2 {
-  font-size: 1.5em;
-  color: black;
+.courses-card .card {
+  width: 240px !important;
+  height: 600px !important;
+  margin: 10px !important;
+  background-color: var(--white) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  margin-bottom: 0 !important;  /* or whatever value you want */
+  margin-top: 0 !important;  /* or whatever value you want */
 }
 
-.bottom-card p:last-child {
-  color: var(--dark-blue);
+.courses-card .top-card img {
+  width: 240px !important;
+  height: 300px !important;
+  object-fit: cover !important;
+}
+
+.courses-card .bottom-card {
+  text-align: center !important;
+  color: black !important;
+}
+.courses-card .bottom-card p {
+  color: black !important;
+}
+
+.courses-card .bottom-card p:first-child {
+  color: var(--coral) !important;
+  margin-bottom: 0 !important;  /* or whatever value you want */
+  margin-top: 0 !important;  /* or whatever value you want */
+}
+
+.courses-card .bottom-card h2 {
+  font-size: 1.5em !important;
+  color: black !important;
+  margin-bottom: 0 !important;  /* or whatever value you want */
+  margin-top: 0 !important;  /* or whatever value you want */
+}
+
+.courses-card .bottom-card p:last-child {
+  color: var(--dark-blue) !important;
 }
