@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // GET /api/courses
 const list = async (req, res) => {
-  const courses = await Course.find({}).sort({updatedAt: -1});
+  const courses = await Course.find({}).sort({createdAt: -1});
   const camelCased = courses.map((course) => toCamelCase(course.toObject()));
 
   res.status(200).json(camelCased);
@@ -77,8 +77,8 @@ const create = async (req, res) => {
   }
 
   try {
-    if (startDate) { startDate = new Date(JSON.parse(startDate)); }
-    if (endDate) { endDate = new Date(JSON.parse(endDate)); }
+    if (startDate && typeof startDate === "string") { startDate = new Date(JSON.parse(startDate)); }
+    if (endDate && typeof endDate === "string") { endDate = new Date(JSON.parse(endDate)); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;
@@ -141,8 +141,8 @@ const update = async (req, res) => {
   }
 
   try {
-    if (typeof startDate === "string") { startDate = new Date(startDate); }
-if (typeof endDate === "string") { endDate = new Date(endDate); }
+    if (startDate && typeof startDate === "string") { startDate = new Date(startDate); }
+    if (endDate && typeof endDate === "string") { endDate = new Date(endDate); }
 
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
