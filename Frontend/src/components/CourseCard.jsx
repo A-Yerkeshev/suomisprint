@@ -28,23 +28,25 @@ function Card(props) {
   };
 
   return (
-    <div className="card">
-      <div className="top-card">
-        <img src={props.img} alt={`${props.name} course`} />
-      </div>
-      <div className="bottom-card">
-        <p>{props.level}</p>
-        <h2>{props.name}</h2>
-        <p>{props.description}</p>
-        <p>&euro;{props.price}</p>
-        <button
-          onClick={() => {
-            redirect(`/editcourse/${props.id}`);
-          }}
-        >
-          Edit
-        </button>
-        <button onClick={handleDelete}>Delete</button>
+    <div className="courses-card">
+      <div className="card">
+        <div className="top-card">
+          <img src={props.img} alt={`${props.name} course`} />
+        </div>
+        <div className="bottom-card">
+          <p>{props.level}</p>
+          <h2>{props.name}</h2>
+          <p>{props.description}</p>
+          <p>&euro;{props.price}</p>
+          <button
+            onClick={() => {
+              redirect(`/editcourse/${props.id}`);
+            }}
+          >
+            Edit
+          </button>
+          <button onClick={handleDelete}>Delete</button>
+        </div>
       </div>
     </div>
   );
