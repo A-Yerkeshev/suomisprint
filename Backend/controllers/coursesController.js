@@ -141,8 +141,9 @@ const update = async (req, res) => {
   }
 
   try {
-    if (startDate) { startDate = new Date(JSON.parse(startDate)); }
-    if (endDate) { endDate = new Date(JSON.parse(endDate)); }
+    if (typeof startDate === "string") { startDate = new Date(startDate); }
+if (typeof endDate === "string") { endDate = new Date(endDate); }
+
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;

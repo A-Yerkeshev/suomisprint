@@ -40,11 +40,12 @@ function Card(props) {
           <p>&euro;{props.price}</p>
           <button
             onClick={() => {
-              redirect(`/description/${props.id}`);
+              redirect(`/editcourse/${props.id}`);
             }}
           >
-            Learn More
+            Edit
           </button>
+          <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
     </div>

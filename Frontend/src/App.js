@@ -8,6 +8,8 @@ import Contact from "./pages/Contact";
 import Layout from "./pages/Layout";
 import CourseForm from "./pages/FormTable";
 import CourseDescription from "./pages/Description";
+import EditCourses from "./pages/EditCourses";
+
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +21,8 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="addcourse" element={<CourseForm />} />
           <Route path="editcourse/:id" element={<CourseForm />} />
-          <Route path="coursedescription" element={<CourseDescription />} />
+          <Route path="description/:id" element={<CourseDescription />} />
+          <Route path="editcourses" element={<EditCourses />} />
         </Route>
       </Routes>
     </BrowserRouter>
