@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../styles/FormTable.css"; // Import the CSS file
+import "../styles/CourseForm.css"; // Import the CSS file
 
 class CourseForm extends Component {
   constructor(props) {
