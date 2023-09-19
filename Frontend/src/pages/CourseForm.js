@@ -1,87 +1,154 @@
-import React, { Component } from "react";
+import React from "react";
 import "../styles/CourseForm.css"; // Import the CSS file
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-class CourseForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // Define initial course field values in state
-      title: "",
-      shortdescription: "",
-      description: "",
-      providerid: "",
-      startdate: "",
-      enddate: "",
-      enrollmentRequirements: "",
-      price: "",
-      maxStudents: "",
-    };
+function CourseForm(props) {
+  const [course, setCourse] = useState({
+    providerId: '',
+    title: '',
+    description: '',
+    shortDescription: '',
+    level: '',
+    price: '',
+    imageUrl: '',
+    maxStudents: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: ''
+  });
+
+  const redirect = useNavigate();
+  const location = useLocation();
+
+  // Determine whether it is a create or edit page
+  const uriParts = location.pathname.split('/');
+  const action = (uriParts[1] === 'editcourse') ? 'PATCH' : 'POST';
+  let id;
+
+  if (action === 'PATCH') {
+    id = uriParts[2];
   }
 
-  // Handle input changes and update state
-  handleInputChange = (event) => {
-    const { name, value, type } = event.target;
-    const newValue = type === "number" ? parseFloat(value) : value;
+  // If /editcourse/:id - get data of course being edited
+  useEffect(() => {
+    if (action === 'PATCH') {
+      const fetchCourse = async () => {
+        try {
+          const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/courses/' + id);
 
-    this.setState({
-      [name]: newValue,
+          if (!res.ok) {
+            redirect('/');
+          }
+
+          const course = await res.json();
+          setCourse(course);
+        } catch(err) {
+          console.log(err);
+        }
+      }
+
+      fetchCourse();
+
+      document.getElementById('form-submit').textContent = 'Update';
+    }
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setCourse({
+      ...course,
+      [name]: value
     });
-  };
+  }
 
   // Handle form submission
-  handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Do something with the course data, e.g., send it to an API
-    console.log("Course created:", this.state);
+
+    try {
+      const endpoint = (action === 'PATCH') ? `/api/courses/${id}` : '/api/courses';
+
+      const res = await fetch(process.env.REACT_APP_BACKEND_URL + endpoint, {
+        method: action,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(course),
+      });
+
+      if (!res.ok) {
+        const e = await res.json();
+        throw new Error(e.error);
+      }
+
+      redirect('/courses');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  render() {
-    return (
-      <div class="form-table">
-        <h1 class="course-heading">Create new course</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={this.state.title}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
+  return (
+    <div className="form-table">
+      <h1 className="course-heading">Create new course</h1>
+      <form>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value={course.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div class="">
-            <label htmlFor="providerid">Provider ID:</label>
-            <input
-              type="text"
-              id="providerid"
-              name="providerid"
-              value={this.state.providerid}
-              onChange={this.handleInputChange}
-              required
-            />
-          </div>
+        <div className="">
+          <label htmlFor="imageUrl">Image url:</label>
+          <input
+            type="text"
+            id="imageUrl"
+            name="imageUrl"
+            value={course.imageUrl}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-          <div>
-            <label htmlFor="shortdescription">Short description:</label>
+        <div>
+            <label htmlFor="shortDescription">Short description:</label>
             <textarea
-              id="shortdescription"
-              name="shortdescription"
-              value={this.state.shortdescription}
-              onChange={this.handleInputChange}
-              // required
+              id="shortDescription"
+              name="shortDescription"
+              value={course.shortDescription}
+              onChange={handleChange}
+              required
             />
           </div>
+
           <div>
             <label htmlFor="description">Full description:</label>
             <textarea
               id="description"
               name="description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-              // required
+              value={course.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="">
+            <label htmlFor="level">Level:</label>
+            <input
+              type="text"
+              id="level"
+              name="level"
+              value={course.level}
+              onChange={handleChange}
+              required
             />
           </div>
 
@@ -91,8 +158,6 @@ class CourseForm extends Component {
               type="date"
               id="startdate"
               name="startdate"
-              value={this.state.startdate}
-              onChange={this.handleInputChange}
               // required
             />
           </div>
@@ -102,11 +167,9 @@ class CourseForm extends Component {
               type="date"
               id="enddate"
               name="enddate"
-              value={this.state.enddate}
-              onChange={this.handleInputChange}
               // required
             />
-          </div> */}
+          </div>
           <div>
             <label htmlFor="enrollmentRequirements">
               Enrollment requirements:
@@ -115,44 +178,42 @@ class CourseForm extends Component {
               type="text"
               id="enrollmentRequirements"
               name="enrollmentRequirements"
-              value={this.state.enrollmentRequirements}
-              onChange={this.handleInputChange}
               // required
             />
-          </div>
+          </div> */}
           <div>
             <label htmlFor="price">Price:</label>
             <input
               type="number"
               id="price"
               name="price"
-              value={this.state.price}
-              onChange={this.handleInputChange}
+              value={course.price}
+              onChange={handleChange}
               // required
             />
           </div>
           <div>
-            <label class="course-label" htmlFor="maxStudents">
+            <label className="course-label" htmlFor="maxStudents">
               Max Students:
             </label>
             <input
               type="number"
               id="maxStudents"
               name="maxStudents"
-              value={this.state.maxStudents}
-              onChange={this.handleInputChange}
+              value={course.maxStudents}
+              onChange={handleChange}
               // required
             />
           </div>
-          <div>
-            <button class="course-button" type="submit">
-              Create
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  }
+
+        <div>
+          <button id="form-submit" className="course-button" type="submit" onClick={handleSubmit}>
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default CourseForm;
