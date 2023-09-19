@@ -84,7 +84,7 @@ function CourseForm(props) {
         throw new Error(e.error);
       }
 
-      redirect('/courses');
+      redirect('/editcourses');
     } catch (err) {
       console.log(err);
     }
