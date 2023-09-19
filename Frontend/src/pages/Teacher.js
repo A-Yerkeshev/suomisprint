@@ -14,6 +14,11 @@ function Teacher() {
     navigate("/addcourse");
   };
 
+  const handleEditClick = () => {
+    console.log("Edit courses button clicked");
+    navigate("/editcourses");
+  }
+
   return (
     <div className="home-container">
       <div className="left-section">
@@ -27,15 +32,16 @@ function Teacher() {
         </div>
         <div className="small-text">Become a teacher at Suomi Sprint</div>
         <div className="two-buttons">
-          <Button color="coral" text="Your course" />
-          <button className="custom-button" onClick={handleCourseClick}>
-            Publish a course
-          </button>
-          {/* <Button
+          <Button 
+            color="coral" 
+            onClick={handleEditClick}
+            text="Edit courses" />
+          
+          <Button
             color="blue"
             onClick={handleCourseClick}
-            text="Publish a course"
-          /> */}
+            text="Add course"
+          />
         </div>
       </div>
       <div className="right-section">

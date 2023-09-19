@@ -154,6 +154,10 @@ nav {
   border: 3px solid var(--white); 
   border-radius: 15px; 
 }
+.kid-image,
+.teacher-image {
+  object-fit: cover; 
+}
 
 /* Media Queries for half computer screen */
 @media only screen and (max-width: 1200px) {

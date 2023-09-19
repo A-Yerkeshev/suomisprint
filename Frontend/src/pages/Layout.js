@@ -28,7 +28,7 @@ const Layout = () => {
           </ul>
           <div className="two-buttons">
             <Button color="coral" text="Join Us" />
-            <Button color="blue" text="Learn More" />
+            <Button color="blue" text="Log in" />
           </div>
         </nav>
 
