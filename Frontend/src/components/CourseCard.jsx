@@ -39,6 +39,7 @@ function Card(props) {
           <p>{props.description}</p>
           <p>&euro;{props.price}</p>
           <button
+            className="button-on-card"
             onClick={() => {
               redirect(`/description/${props.id}`);
             }}
