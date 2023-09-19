@@ -9,6 +9,8 @@ import Teacher from "./pages/Teacher";
 import Layout from "./pages/Layout";
 import CourseForm from "./pages/CourseForm";
 import CourseDescription from "./pages/Description";
+import EditCourses from "./pages/EditCourses";
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +22,9 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="teacher" element={<Teacher />} />
           <Route path="addcourse" element={<CourseForm />} />
-          <Route path="coursedescription" element={<CourseDescription />} />
+          <Route path="editcourse/:id" element={<CourseForm />} />
+          <Route path="description/:id" element={<CourseDescription />} />
+          <Route path="editcourses" element={<EditCourses />} />
         </Route>
       </Routes>
     </BrowserRouter>
