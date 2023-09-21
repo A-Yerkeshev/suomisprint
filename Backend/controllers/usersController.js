@@ -13,7 +13,7 @@ const register = async (req, res) => {
 
   // Validate data types
   try {
-    if (role) { role = parseInt(role); }
+    if (typeof role === 'string') { role = parseInt(role); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert role into an integer. Error: ${err}`});
     return;
@@ -35,7 +35,7 @@ const register = async (req, res) => {
   }
 }
 
-// PATCH /api/courses/:token
+// PATCH /api/users/:token
 const update = async (req, res) => {
   const {token} = req.params;
   // Extract user id from token!
@@ -72,7 +72,7 @@ const update = async (req, res) => {
   }
 }
 
-// DELETE /api/courses/:token
+// DELETE /api/users/:token
 const remove = async (req, res) => {
   const {token} = req.params;
   // Extract user id from token!
@@ -105,7 +105,7 @@ const toUnderscoreCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val) {
+    if (val !== undefined) {
       const underscored = key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => ("_" + y.toLowerCase())).replace(/^_/, "");
       res[underscored] = val;
     }
@@ -118,7 +118,7 @@ const toCamelCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val) {
+    if (val !== undefined) {
       const camelCased = key.replace(/_([a-z])/g, (g) => (g[1].toUpperCase()));
       res[camelCased] = val;
     }
