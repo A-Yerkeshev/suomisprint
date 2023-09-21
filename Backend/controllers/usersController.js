@@ -35,7 +35,7 @@ const register = async (req, res) => {
   }
 }
 
-// PATCH /api/courses/
+// PATCH /api/courses/:token
 const update = async (req, res) => {
   const {token} = req.params;
   // Extract user id from token!
@@ -72,7 +72,7 @@ const update = async (req, res) => {
   }
 }
 
-// DELETE /api/courses/
+// DELETE /api/courses/:token
 const remove = async (req, res) => {
   const {token} = req.params;
   // Extract user id from token!
