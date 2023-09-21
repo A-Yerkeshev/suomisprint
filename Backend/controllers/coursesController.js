@@ -63,10 +63,10 @@ const create = async (req, res) => {
     endTime} = req.body;
 
   // Validate presence of data
-  // if (!title || !description || !shortDescription || !level) {
-  //   res.status(400).json({error: "Course must have title, description, shortDescription and level properties."});
-  //   return;
-  // }
+  if (!title) {
+    res.status(400).json({error: "Course must have title."});
+    return;
+  }
   if (!title) {
     res.status(400).json({error: "Course must have a title."});
     return;
