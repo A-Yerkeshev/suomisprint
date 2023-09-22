@@ -48,9 +48,9 @@ const register = async (req, res) => {
   }
 }
 
-// PATCH /api/users/:id
+// PATCH /api/users/
 const update = async (req, res) => {
-  const {id} = req.params;
+  const id = req.user.id;
   let { name, email, phone, password, role } = req.body;
 
   // Validate data types
@@ -84,9 +84,9 @@ const update = async (req, res) => {
   }
 }
 
-// DELETE /api/users/:id
+// DELETE /api/users/
 const remove = async (req, res) => {
-  const {id} = req.params;
+  const id = req.user.id;
 
   if (!validId(id)) {
     res.status(400).json({error: `${id} is not a valid user id.`});
