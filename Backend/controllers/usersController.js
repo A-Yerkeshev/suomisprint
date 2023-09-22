@@ -101,7 +101,21 @@ const remove = async (req, res) => {
 const login = async (req, res) => {
   let { name, email } = req.body;
 
+  // Validate presence of data
+  if (!name || !email) {
+    res.status(400).json({error: "User must have a name and email."});
+    return;
+  }
 
+  // Find user
+  const user = await User.findOne({name, email});
+
+  if (!user) {
+    res.status(400).json({error: "Username or password is invalid."});
+    return;
+  }
+
+  res.status(200).json(toCamelCase(user.toObject()));
 }
 
 const validId = (id) => {
