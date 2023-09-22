@@ -1,14 +1,15 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // POST /api/users
 const register = async (req, res) => {
-  let { name, email, phone, role=0 } = req.body;
+  let { name, email, phone, password, role=0 } = req.body;
 
   // Validate presence of data
-  if (!name || !email) {
-    res.status(400).json({error: "User must have a name and email."});
+  if (!name || !email || !password) {
+    res.status(400).json({error: "User must have a name, email and password."});
     return;
   }
 
@@ -33,6 +34,7 @@ const register = async (req, res) => {
     const payload = toUnderscoreCase({
       name,
       email,
+      password: await hashPassword(password),
       phone,
       role
     });
@@ -49,7 +51,7 @@ const register = async (req, res) => {
 // PATCH /api/users/:id
 const update = async (req, res) => {
   const {id} = req.params;
-  let { name, email, phone, role } = req.body;
+  let { name, email, phone, password, role } = req.body;
 
   // Validate data types
   try {
@@ -69,6 +71,7 @@ const update = async (req, res) => {
     const payload = toUnderscoreCase({
       name,
       email,
+      password: await hashPassword(password),
       phone,
       role
     });
@@ -111,9 +114,9 @@ const login = async (req, res) => {
   }
 
   // Find user
-  const user = await User.findOne({name, password});
+  const user = await User.findOne({name});
 
-  if (!user) {
+  if (!user || !(await bcrypt.compare(password, user.password))) {
     res.status(400).json({error: "Username or password is invalid."});
     return;
   }
@@ -165,6 +168,13 @@ const toCamelCase = (obj) => {
 
 const generateToken = (id) => {
   return jwt.sign({id}, process.env.JWT_KEY, {expiresIn: '30d'});
+}
+
+const hashPassword = async (password) => {
+  if (password) {
+    const salt = await bcrypt.genSalt(10);
+    return await bcrypt.hash(password, salt);
+  }
 }
 
 module.exports = {
