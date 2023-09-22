@@ -211,7 +211,7 @@ const toUnderscoreCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val !== undefined) {
+    if (val !== undefined && val !== '') {
       const underscored = key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => ("_" + y.toLowerCase())).replace(/^_/, "");
       res[underscored] = val;
     }
@@ -224,7 +224,7 @@ const toCamelCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val !== undefined) {
+    if (val !== undefined && val !== '') {
       const camelCased = key.replace(/_([a-z])/g, (g) => (g[1].toUpperCase()));
       res[camelCased] = val;
     }
