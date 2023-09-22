@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 // POST /api/users
 const register = async (req, res) => {
@@ -37,7 +38,9 @@ const register = async (req, res) => {
     });
 
     const user = await User.create(payload);
-    res.status(200).json(toCamelCase(user.toObject()));
+    const resData = toCamelCase({...user.toObject(), token: generateToken(user._id)});
+
+    res.status(200).json(resData);
   } catch (err) {
     res.status(500).json({error: `Failed to register user. Error: ${err}`});
   }
@@ -99,23 +102,25 @@ const remove = async (req, res) => {
 
 // POST /api/users/login
 const login = async (req, res) => {
-  let { name, email } = req.body;
+  let { name, password } = req.body;
 
   // Validate presence of data
-  if (!name || !email) {
-    res.status(400).json({error: "User must have a name and email."});
+  if (!name || !password) {
+    res.status(400).json({error: "User must have a name and password."});
     return;
   }
 
   // Find user
-  const user = await User.findOne({name, email});
+  const user = await User.findOne({name, password});
 
   if (!user) {
     res.status(400).json({error: "Username or password is invalid."});
     return;
   }
 
-  res.status(200).json(toCamelCase(user.toObject()));
+  const resData = toCamelCase({...user.toObject(), token: generateToken(user._id)});
+
+  res.status(200).json(resData);
 }
 
 const validId = (id) => {
@@ -156,6 +161,10 @@ const toCamelCase = (obj) => {
   }
 
   return res;
+}
+
+const generateToken = (id) => {
+  return jwt.sign({id}, process.env.JWT_KEY, {expiresIn: '30d'});
 }
 
 module.exports = {
