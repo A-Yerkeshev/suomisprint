@@ -4,18 +4,16 @@ const usersController = require('../controllers/usersController');
 const router = express.Router();
 
 // Register new user
-router.post('/', usersController.register)
+router.post('/', usersController.register);
 
 // Update user
-router.patch('/:token', usersController.update)
+router.patch('/:id', usersController.update);
 
 // Delete user
-router.delete('/:token', usersController.delete)
+router.delete('/:id', usersController.delete);
 
 // Login
-
-
-// Logout
+router.post('/login', usersController.login);
 
 
 module.exports = router

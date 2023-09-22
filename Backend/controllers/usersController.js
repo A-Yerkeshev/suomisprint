@@ -6,8 +6,8 @@ const register = async (req, res) => {
   let { name, email, phone, role=0 } = req.body;
 
   // Validate presence of data
-  if (!name) {
-    res.status(400).json({error: "User must have a name."});
+  if (!name || !email) {
+    res.status(400).json({error: "User must have a name and email."});
     return;
   }
 
@@ -16,6 +16,14 @@ const register = async (req, res) => {
     if (typeof role === 'string') { role = parseInt(role); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert role into an integer. Error: ${err}`});
+    return;
+  }
+
+  // Check that user with this email does not exist
+  const user = await User.findOne({email});
+
+  if (user) {
+    res.status(400).json({error: `User with email ${email} already registered.`});
     return;
   }
 
@@ -35,23 +43,21 @@ const register = async (req, res) => {
   }
 }
 
-// PATCH /api/users/:token
+// PATCH /api/users/:id
 const update = async (req, res) => {
-  const {token} = req.params;
-  // Extract user id from token!
+  const {id} = req.params;
   let { name, email, phone, role } = req.body;
-
-  // Validate presence of data
-  if (!name) {
-    res.status(400).json({error: "User must have a name."});
-    return;
-  }
 
   // Validate data types
   try {
     if (role) { role = parseInt(role); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert role into an integer. Error: ${err}`});
+    return;
+  }
+
+  if (!validId(id)) {
+    res.status(400).json({error: `${id} is not a valid user id.`});
     return;
   }
 
@@ -72,10 +78,14 @@ const update = async (req, res) => {
   }
 }
 
-// DELETE /api/users/:token
+// DELETE /api/users/:id
 const remove = async (req, res) => {
-  const {token} = req.params;
-  // Extract user id from token!
+  const {id} = req.params;
+
+  if (!validId(id)) {
+    res.status(400).json({error: `${id} is not a valid user id.`});
+    return;
+  }
 
   const user = await User.findOneAndDelete({_id: id})
 
@@ -85,6 +95,13 @@ const remove = async (req, res) => {
   }
 
   res.status(200).json(toCamelCase(user.toObject()));
+}
+
+// POST /api/users/login
+const login = async (req, res) => {
+  let { name, email } = req.body;
+
+
 }
 
 const validId = (id) => {
@@ -130,5 +147,6 @@ const toCamelCase = (obj) => {
 module.exports = {
   register,
   delete: remove,
-  update
+  update,
+  login
 }
