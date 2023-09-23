@@ -13,6 +13,7 @@ import CourseDescription from "./pages/Description";
 import EditCourses from "./pages/EditCourses";
 import Register from "./pages/Register";
 import GlobalContext from "./components/GlobalContext";
+import Login from "./pages/Login";
 
 function App() {
   const currentUserContext = useState(null);
@@ -32,6 +33,7 @@ function App() {
             <Route path="description/:id" element={<CourseDescription />} />
             <Route path="editcourses" element={<EditCourses />} />
             <Route path="register" element={<Register />} />
+            <Route path="login" element={<Login />} />
           </Route>
         </Routes>
       </GlobalContext.Provider>
