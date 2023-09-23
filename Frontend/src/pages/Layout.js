@@ -1,9 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
+import { useContext } from "react";
 import "../styles/App.css";
 import "../styles/Navbar.css";
 import Button from "../components/Button";
+import GlobalContext from "../components/GlobalContext";
 
 const Layout = () => {
+  const { currentUserContext } = useContext(GlobalContext);
+  const [currentUser, setCurrentUser] = currentUserContext;
+
   return (
     <>
       <div className="main-wrapper">
@@ -27,8 +32,13 @@ const Layout = () => {
             </li>
           </ul>
           <div className="two-buttons">
-            <Button color="coral" text="Join Us" />
-            <Button color="blue" text="Log in" />
+              {
+              currentUser && `Logged in as ${currentUser.name}` ||
+                <>
+                <Button color="coral" text="Join Us" />
+                <Button color="blue" text="Log in" />
+                </>
+              }
           </div>
         </nav>
 

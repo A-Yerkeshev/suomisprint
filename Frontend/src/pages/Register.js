@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import GlobalContext from "../components/GlobalContext";
 
 function Register() {
   const [user, setUser] = useState({
@@ -8,6 +10,9 @@ function Register() {
     role: 0
   });
   const [repPassword, setRepPassword] = useState('');
+  const { currentUserContext } = useContext(GlobalContext);
+  const [currentUser, setCurrentUser] = currentUserContext;
+  const redirect = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -44,7 +49,8 @@ function Register() {
 
       const newUser = await res.json();
 
-      console.log(newUser);
+      setCurrentUser(newUser);
+      redirect('/courses');
     } catch(err) {
       console.log(err);
     }
