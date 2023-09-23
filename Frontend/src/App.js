@@ -10,6 +10,7 @@ import Layout from "./pages/Layout";
 import CourseForm from "./pages/CourseForm";
 import CourseDescription from "./pages/Description";
 import EditCourses from "./pages/EditCourses";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="editcourse/:id" element={<CourseForm />} />
           <Route path="description/:id" element={<CourseDescription />} />
           <Route path="editcourses" element={<EditCourses />} />
+          <Route path="register" element={<Register />} />
         </Route>
       </Routes>
     </BrowserRouter>

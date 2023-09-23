@@ -51,6 +51,7 @@ function CourseForm(props) {
 
       fetchCourse();
 
+      document.getElementsByClassName('course-heading')[0].textContent = 'Update course';
       document.getElementById('form-submit').textContent = 'Update';
     }
   }, []);
