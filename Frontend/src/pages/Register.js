@@ -113,7 +113,7 @@ function Register() {
               onChange={(e) => setCurrentUser({...user, role: (e.target.value ? 1 : 0)})}
               checked
           />
-          <label for="role">I want to publish my courses</label>
+          <label htmlFor="role">I want to publish my courses</label>
         </div>
         <button type="button" onClick={submit}>Register</button>
       </form>
