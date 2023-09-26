@@ -25,8 +25,6 @@ function CourseForm(props) {
     endTime: ''
   });
 
-  console.log(currentUser, providerId);
-
   const redirect = useNavigate();
   const location = useLocation();
 
