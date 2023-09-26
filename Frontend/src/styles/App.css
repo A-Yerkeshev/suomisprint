@@ -130,12 +130,14 @@ nav {
 }
 
 .man-image,
-.woman-image {
+.woman-image,
+.kid-image,
+.teacher-image {
   position: absolute;
   max-width: 100%;
 }
 
-.man-image {
+.man-image, .kid-image {
   width: 425px;
   height: 531px;
   left: 80px;
@@ -144,13 +146,17 @@ nav {
   border-radius: 15px; 
 }
 
-.woman-image {
+.woman-image, .teacher-image {
   width: 232px;
   height: auto;
   left: 0px;
   top: 340px;
   border: 3px solid var(--white); 
   border-radius: 15px; 
+}
+.kid-image,
+.teacher-image {
+  object-fit: cover; 
 }
 
 /* Media Queries for half computer screen */

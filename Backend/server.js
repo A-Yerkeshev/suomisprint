@@ -2,6 +2,7 @@ require('dotenv').config();
 const connectDB = require('./config/db');
 const express = require('express');
 const coursesRouter = require('./routes/coursesRouter');
+const usersRouter = require('./routes/usersRouter');
 const cors = require('cors');
 
 // express app
@@ -19,5 +20,6 @@ app.get('/', (req, res) => res.send('API Running!'));
 
 // routes
 app.use('/api/courses', coursesRouter);
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

@@ -1,21 +1,21 @@
 const express = require('express');
-const usersController = require('../controllers/coursesController');
+const coursesController = require('../controllers/coursesController');
 
 const router = express.Router();
 
 // GET all courses
-router.get('/', usersController.list)
+router.get('/', coursesController.list)
 
 // GET a single course
-router.get('/:id', usersController.get)
+router.get('/:id', coursesController.get)
 
 // POST a new course
-router.post('/', usersController.create)
+router.post('/', coursesController.create)
 
 // DELETE a course
-router.delete('/:id', usersController.delete)
+router.delete('/:id', coursesController.delete)
 
 // Update course
-router.patch('/:id', usersController.update)
+router.patch('/:id', coursesController.update)
 
 module.exports = router

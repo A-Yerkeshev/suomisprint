@@ -1,9 +1,9 @@
 import React from "react";
-import Card from "../components/CourseCard";
+import Card from "../components/EditCourse.jsx";
 import '../styles/card.css';  // Import your CSS if it's not imported elsewhere
 import { useState, useEffect } from "react";
 
-function Courses() {
+function EditCourses() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ function Courses() {
   );
 }
 
-export default Courses;
+export default EditCourses;

@@ -3,8 +3,16 @@ import '../styles/App.css';
 import manInTheSenSquare from '../img/man-in-the-sen-square.png';
 import womanImage from '../img/woman-image.png';
 import Button from '../components/Button';
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleLearnMoreClick = () => {
+    console.log("Learn more button clicked");
+    navigate("/courses");
+  };
+
   return (
     <div className="home-container">
       <div className="left-section">
@@ -17,7 +25,10 @@ function Home() {
         <div className="small-text">Learn Finnish online in small groups</div>
         <div className="two-buttons">
           <Button color="coral" text="Join Us" />
-          <Button color="blue" text="Learn More" />
+          <Button 
+            color="blue" 
+            onClick={handleLearnMoreClick}
+            text="Learn More" />
         </div>
       </div>
       <div className="right-section">

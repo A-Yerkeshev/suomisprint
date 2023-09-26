@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // GET /api/courses
 const list = async (req, res) => {
-  const courses = await Course.find({}).sort({updatedAt: -1});
+  const courses = await Course.find({}).sort({createdAt: -1});
   const camelCased = courses.map((course) => toCamelCase(course.toObject()));
 
   res.status(200).json(camelCased);
@@ -25,9 +25,7 @@ const get = async (req, res) => {
     return;
   }
 
-  const camelCased = toCamelCase(course.toObject());
-
-  res.status(200).json(camelCased);
+  res.status(200).json(toCamelCase(course.toObject()));
 }
 
 // DELETE /api/courses/:id
@@ -46,7 +44,7 @@ const remove = async (req, res) => {
     return;
   }
 
-  res.status(200).json(course);
+  res.status(200).json(toCamelCase(course.toObject()));
 }
 
 // POST /api/courses
@@ -65,8 +63,12 @@ const create = async (req, res) => {
     endTime} = req.body;
 
   // Validate presence of data
-  if (!title || !description || !shortDescription || !level) {
-    res.status(400).json({error: "Course must have title, description, shortDescription and level properties."});
+  // if (!title || !description || !shortDescription || !level) {
+  //   res.status(400).json({error: "Course must have title, description, shortDescription and level properties."});
+  //   return;
+  // }
+  if (!title) {
+    res.status(400).json({error: "Course must have a title."});
     return;
   }
 
@@ -79,8 +81,8 @@ const create = async (req, res) => {
   }
 
   try {
-    if (startDate) { startDate = new Date(JSON.parse(startDate)); }
-    if (endDate) { endDate = new Date(JSON.parse(endDate)); }
+    if (startDate && typeof startDate === "string") { startDate = new Date(JSON.parse(startDate)); }
+    if (endDate && typeof endDate === "string") { endDate = new Date(JSON.parse(endDate)); }
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;
@@ -111,7 +113,7 @@ const create = async (req, res) => {
     payload.enrolled = [];
 
     const course = await Course.create(payload);
-    res.status(200).json(course);
+    res.status(200).json(toCamelCase(course.toObject()));
   } catch (err) {
     res.status(500).json({error: `Failed to save new course. Error: ${err}`});
   }
@@ -143,8 +145,9 @@ const update = async (req, res) => {
   }
 
   try {
-    if (startDate) { startDate = new Date(JSON.parse(startDate)); }
-    if (endDate) { endDate = new Date(JSON.parse(endDate)); }
+    if (startDate && typeof startDate === "string") { startDate = new Date(startDate); }
+    if (endDate && typeof endDate === "string") { endDate = new Date(endDate); }
+
   } catch(err) {
     res.status(400).json({error: `Failed to convert startDate/endDate to date. Error: ${err}`});
     return;
@@ -184,7 +187,7 @@ const update = async (req, res) => {
       return;
     }
 
-    res.status(200).json(course);
+    res.status(200).json(toCamelCase(course.toObject()));
   } catch (err) {
     res.status(500).json({error: `Failed to save updates to the course. Error: ${err}`});
   }
@@ -208,7 +211,7 @@ const toUnderscoreCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val) {
+    if (val !== undefined && val !== '') {
       const underscored = key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => ("_" + y.toLowerCase())).replace(/^_/, "");
       res[underscored] = val;
     }
@@ -221,7 +224,7 @@ const toCamelCase = (obj) => {
   const res = {};
 
   for (const [key, val] of Object.entries(obj)) {
-    if (val) {
+    if (val !== undefined && val !== '') {
       const camelCased = key.replace(/_([a-z])/g, (g) => (g[1].toUpperCase()));
       res[camelCased] = val;
     }

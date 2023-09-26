@@ -32,6 +32,7 @@ function Contact(props) {
   };
 
   return (
+    <div className="contact-container">
     <div>
       <h2>Contact Us</h2>
       <form onSubmit={onSubmit}>
@@ -80,6 +81,7 @@ function Contact(props) {
           <p>Contact Number:{contactNumber}</p>
         </div>
        
+    </div>
     </div>
   );
 }
