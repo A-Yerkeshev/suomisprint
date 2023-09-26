@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/FormTable.css"; // Import the CSS file
+import "../styles/CourseForm.css"; // Import the CSS file
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useContext } from "react";
