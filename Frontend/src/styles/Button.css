@@ -8,28 +8,27 @@
     transition: background-color 0.3s ease;
     transition: transform 0.3s ease;
     border-radius: 5px;
-    width: 130px; 
+    width: 130px;
     height: 50px;
   }
-  
+
   /* Blue button style */
   .button.blue {
     background-color: var(--dark-blue);
     border: 2px solid var(--white);
     color: var(--white);
   }
-  
+
   .button.blue:hover {
     transform: scale(1.1);
   }
-  
+
   /* Coral button style */
   .button.coral {
     background-color: var(--coral);
     color: var(--white);
   }
-  
+
   .button.coral:hover {
     transform: scale(1.1);
   }
-  

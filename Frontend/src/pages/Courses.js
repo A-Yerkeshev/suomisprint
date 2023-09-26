@@ -2,6 +2,7 @@ import React from "react";
 import Card from "../components/CourseCard";
 import '../styles/card.css';  // Import your CSS if it's not imported elsewhere
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -24,6 +25,9 @@ function Courses() {
     <>
       <div className="heading-container">
       <h1 className="courses-heading">Our Courses</h1>
+      <button>
+        <Link to='/addcourse'>Add course</Link>
+      </button>
     </div>
       <div className="card-container">
         {courses.map((course, index) => (
