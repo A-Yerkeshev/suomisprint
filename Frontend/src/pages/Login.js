@@ -1,15 +1,18 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../components/GlobalContext";
+import { useLogin } from "../hooks/useLogin";
 
 function Login() {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   });
+
+  const { login, isLoading, error } = useLogin();
   const { currentUserContext } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = currentUserContext;
-  const redirect = useNavigate();
+  //const redirect = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -24,24 +27,11 @@ function Login() {
     event.preventDefault();
 
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials)
-      })
-
-      if (!res.ok) {
-        const e = await res.json();
-        throw new Error(e.error);
+      await login(credentials.email, credentials.password); // Use login from useLogin
+      if (!error) {
+       // redirect('/courses');
       }
-
-      const user = await res.json();
-
-      setCurrentUser(user);
-      redirect('/courses');
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   }
@@ -72,7 +62,8 @@ function Login() {
               required
             />
         </div>
-        <button type="button" onClick={submit}>Login</button>
+        <button type="button" onClick={submit} disabled={isLoading}>Login</button>
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   )
