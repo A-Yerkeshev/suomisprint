@@ -77,6 +77,20 @@ function CourseForm(props) {
   // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
+    //Array of default images
+    const defaultImages = [
+      '../img/woman-image.png',
+      '../img/a-woman-in-helsinki.png',
+      '../img/course-in-teacher-page.png',
+      '../img/a-woman-with-a-book.png',
+      '../img/man-in-the-sen-square.png',
+      '../img/woman-with-laptop.png'
+    ];
+
+    if (!course.imageUrl) {
+      const randomIndex = Math.floor(Math.random() * defaultImages.length);
+      course.imageUrl = defaultImages[randomIndex];
+    }
 
     try {
       const endpoint =
