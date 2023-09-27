@@ -1,0 +1,66 @@
+/* Style the form container */
+.register-table {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.register-table div {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+  
+  }
+  /* Style form labels */
+  .register-table label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  /* Style text inputs and textareas */
+  .register-table input[type="text"],
+  .register-table input[type="email"],
+  .register-table input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #5e0909;
+    border-radius: 3px;
+    font-size: 16px;
+  }
+  
+  .register-table input[type="checkbox"] {
+    margin-right: 5px; 
+    vertical-align: middle; 
+    }
+  
+  /* Style the Register button */
+  .register-table .register-button {
+    padding: 15px 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    background-color: #ff6551;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .register-table .register-button:hover {
+    background-color: #b32d00;
+    transform: scale(1.1);
+  }
+  
+  /* Center the heading */
+  .register-heading {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 0;
+    padding-top: 20px; /* Add some padding at the top of the heading */
+  }
+  

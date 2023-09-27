@@ -1,15 +1,16 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../components/GlobalContext";
+import "../styles/Register.css";
 
 function Register() {
   const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-    role: 0
+    name: "",
+    email: "",
+    password: "",
+    role: 0,
   });
-  const [repPassword, setRepPassword] = useState('');
+  const [repPassword, setRepPassword] = useState("");
   const { currentUserContext } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = currentUserContext;
   const redirect = useNavigate();
@@ -19,28 +20,31 @@ function Register() {
 
     setUser({
       ...user,
-      [name]: value
+      [name]: value,
     });
-  }
+  };
 
   const submit = async (event) => {
     event.preventDefault();
 
     // Verify that password and repeat password match
     if (user.password !== repPassword) {
-      alert('Passwords do not match!');
+      alert("Passwords do not match!");
       return;
     }
 
     // Register new user
     try {
-      const res = await fetch(process.env.REACT_APP_BACKEND_URL + '/api/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user)
-      })
+      const res = await fetch(
+        process.env.REACT_APP_BACKEND_URL + "/api/users",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
 
       if (!res.ok) {
         const e = await res.json();
@@ -50,75 +54,79 @@ function Register() {
       const newUser = await res.json();
 
       setCurrentUser(newUser);
-      redirect('/courses');
-    } catch(err) {
+      redirect("/courses");
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
-    <div>
-      <h1>Register</h1>
+    <div className="register-table">
+      <h1 className="register-heading">Register</h1>
       <form>
         <div>
           <label htmlFor="name">Username:</label>
           <input
-              type="text"
-              id="name"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-              required
-            />
+            type="text"
+            id="name"
+            name="name"
+            value={user.name}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
-          <label htmlFor="email">email:</label>
+          <label htmlFor="email">Email:</label>
           <input
-              type="email"
-              id="email"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-              required
-            />
+            type="email"
+            id="email"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
-          <label htmlFor="password">password:</label>
+          <label htmlFor="password">Password:</label>
           <input
-              type="password"
-              id="password"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-              required
-            />
+            type="password"
+            id="password"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <label htmlFor="password-rep">Repeat password:</label>
           <input
-              type="password"
-              id="password-rep"
-              name="password-rep"
-              value={repPassword}
-              onChange={(e) => setRepPassword(e.target.value)}
-              required
-            />
+            type="password"
+            id="password-rep"
+            name="password-rep"
+            value={repPassword}
+            onChange={(e) => setRepPassword(e.target.value)}
+            required
+          />
         </div>
         <div>
           <input
-              type="checkbox"
-              id="role"
-              name="role"
-              value="role"
-              onChange={(e) => setCurrentUser({...user, role: (e.target.value ? 1 : 0)})}
-              checked
+            type="checkbox"
+            id="role"
+            name="role"
+            value="role"
+            onChange={(e) =>
+              setCurrentUser({ ...user, role: e.target.value ? 1 : 0 })
+            }
+            checked
           />
           <label htmlFor="role">I want to publish my courses</label>
         </div>
-        <button type="button" onClick={submit}>Register</button>
+        <button className="register-button" type="button" onClick={submit}>
+          Register
+        </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default Register
+export default Register;
