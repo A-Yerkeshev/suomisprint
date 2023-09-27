@@ -14,6 +14,7 @@ function Register() {
   const { currentUserContext } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = currentUserContext;
   const redirect = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -114,10 +115,11 @@ function Register() {
             id="role"
             name="role"
             value="role"
-            onChange={(e) =>
-              setCurrentUser({ ...user, role: e.target.value ? 1 : 0 })
-            }
-            checked
+            onChange={(e) => {
+              setIsChecked(e.target.checked);
+              setUser({ ...user, role: e.target.checked ? 1 : 0 });
+            }}
+            checked={isChecked}
           />
           <label htmlFor="role">I want to publish my courses</label>
         </div>
