@@ -4,10 +4,16 @@ import "../styles/App.css";
 import "../styles/Navbar.css";
 import Button from "../components/Button";
 import GlobalContext from "../components/GlobalContext";
+import { useLogout } from '../hooks/useLogout'
 
 const Layout = () => {
   const { currentUserContext } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = currentUserContext;
+  const { logout } = useLogout()
+
+  const handleClick = () => {
+    logout()
+  }
 
   return (
     <>
@@ -32,17 +38,23 @@ const Layout = () => {
             </li>
           </ul>
           <div className="two-buttons">
-              {
-              currentUser && `Logged in as ${currentUser.name}` ||
+          {
+            currentUser ? (
+              <>
+                {`Logged in as ${currentUser.name}`}
+                <Button color="red" text="Logout" onClick={handleClick} />
+              </>
+           ) : (
                 <>
-                <Link to='/register'>
-                  <Button color="coral" text="Join Us" />
-                </Link>
-                <Link to='/login'>
-                  <Button color="blue" text="Log in" />
-                </Link>
+                  <Link to="/register">
+                    <Button color="coral" text="Join Us" />
+                  </Link>
+                  <Link to="/login">
+                      <Button color="blue" text="Log in" />
+                  </Link>
                 </>
-              }
+  )
+}
           </div>
         </nav>
 
