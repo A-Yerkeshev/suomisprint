@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalContext from "../components/GlobalContext";
+import { useRegister } from '../hooks/useRegister'; 
 import "../styles/Register.css";
 
 function Register() {
@@ -15,6 +16,8 @@ function Register() {
   const [currentUser, setCurrentUser] = currentUserContext;
   const redirect = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
+
+  const { register, isLoading, error } = useRegister(); 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,31 +37,19 @@ function Register() {
       return;
     }
 
-    // Register new user
-    try {
-      const res = await fetch(
-        process.env.REACT_APP_BACKEND_URL + "/api/users",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(user),
-        }
+    await register(user);
+    if (error) {
+      console.log("Error exists: ", error); // Debug line to ensure error exists.
+      return (
+        <div className="error">
+          {error}
+        </div>
       );
-
-      if (!res.ok) {
-        const e = await res.json();
-        throw new Error(e.error);
-      }
-
-      const newUser = await res.json();
-
-      setCurrentUser(newUser);
-      redirect("/courses");
-    } catch (err) {
-      console.log(err);
     }
+
+    setCurrentUser(user); // Assuming the 'user' object now includes the server response
+    //redirect("/courses");
+    
   };
 
   return (
@@ -123,9 +114,10 @@ function Register() {
           />
           <label htmlFor="role">I want to publish my courses</label>
         </div>
-        <button className="register-button" type="button" onClick={submit}>
+        <button disabled={isLoading} className="register-button" type="button" onClick={submit}>
           Register
         </button>
+        {error&&<div className="error">{error}</div>}
       </form>
     </div>
   );
