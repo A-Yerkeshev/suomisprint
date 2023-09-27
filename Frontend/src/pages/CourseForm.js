@@ -2,10 +2,16 @@ import React from "react";
 import "../styles/CourseForm.css"; // Import the CSS file
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useContext } from "react";
+import GlobalContext from "../components/GlobalContext";
 
 function CourseForm(props) {
+  const { currentUserContext } = useContext(GlobalContext);
+  const [currentUser, setCurrentUser] = currentUserContext;
+  const providerId = (currentUser && currentUser.Id) || "";
+
   const [course, setCourse] = useState({
-    providerId: "",
+    providerId,
     title: "",
     description: "",
     shortDescription: "",
@@ -89,7 +95,7 @@ function CourseForm(props) {
         throw new Error(e.error);
       }
 
-      redirect("/editcourses");
+      redirect("/courses");
     } catch (err) {
       console.log(err);
     }

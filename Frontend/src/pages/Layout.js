@@ -35,8 +35,12 @@ const Layout = () => {
               {
               currentUser && `Logged in as ${currentUser.name}` ||
                 <>
-                <Button color="coral" text="Join Us" />
-                <Button color="blue" text="Log in" />
+                <Link to='/register'>
+                  <Button color="coral" text="Join Us" />
+                </Link>
+                <Link to='/login'>
+                  <Button color="blue" text="Log in" />
+                </Link>
                 </>
               }
           </div>
