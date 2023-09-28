@@ -6,7 +6,6 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Teacher from "./pages/Teacher";
 import Layout from "./pages/Layout";
 import CourseForm from "./pages/CourseForm";
 import CourseDescription from "./pages/Description";
@@ -28,7 +27,6 @@ function App() {
             <Route path="courses" element={<Courses />} />
             <Route path="About" element={<About />} />
             <Route path="contact" element={<Contact />} />
-            <Route path="teacher" element={<Teacher />} />
             <Route path="addcourse" element={<CourseForm />} />
             <Route path="editcourse/:id" element={<CourseForm />} />
             <Route path="description/:id" element={<CourseDescription />} />

@@ -35,7 +35,7 @@ const Layout = () => {
               <Link to="/contact">Contact</Link>
             </li>
             <li>
-              <Link to="/teacher">For teachers</Link>
+              <Link to="/mycourses">My courses</Link>
             </li>
           </ul>
           <div className="two-buttons">

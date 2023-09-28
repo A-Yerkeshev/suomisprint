@@ -47,14 +47,18 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
   const fetchWithToken = async (url, options = {}) => {
-    const token = localStorage.getItem('token');
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      ...options.headers,
-    };
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const token = storedUser ? storedUser.token : null;
 
+    if (token) {
+      const headers = {
+        Authorization: `Bearer ${token}`,
+        ...options.headers,
+      };
     const response = await fetch(url, { ...options, headers });
     return response;
+    }
+    throw new Error("No token found"); 
   };
   console.log('AuthContext state:', state);
 

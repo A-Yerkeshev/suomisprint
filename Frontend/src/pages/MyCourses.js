@@ -29,7 +29,7 @@ function MyCourses() {
   return (
     <>
       <div className="heading-container">
-      <h1 className="courses-heading">Our Courses</h1>
+      <h1 className="courses-heading">My Courses</h1>
     </div>
       <div className="card-container">
         {courses.map((course, index) => (
