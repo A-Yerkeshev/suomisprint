@@ -253,6 +253,21 @@ const enroll = async (req, res) => {
   res.status(200).json({ message: "Successfully enrolled" });
 }
 
+const myCourses = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const courses = await Course.find({ enrolled: userId });
+
+    if (!courses || courses.length === 0) {
+      return res.status(200).json({ message: 'No enrolled courses found.' });
+    }
+
+    res.status(200).json(courses);
+  } catch (err) {
+    res.status(500).json({ error: `Failed to fetch courses. Error: ${err}` });
+  }
+};
+
 
 module.exports = {
   list,
@@ -260,5 +275,6 @@ module.exports = {
   create,
   delete: remove,
   update,
-  enroll
+  enroll,
+  myCourses
 }

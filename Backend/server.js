@@ -19,7 +19,7 @@ app.use(cors());
 app.get('/', (req, res) => res.send('API Running!'));
 
 // routes
-app.use('/api/courses', coursesRouter);
+app.use('/api', coursesRouter);
 app.use('/api/users', usersRouter);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

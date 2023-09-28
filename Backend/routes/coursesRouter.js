@@ -6,21 +6,24 @@ const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
 
 // GET all courses
-router.get('/', coursesController.list)
+router.get('/courses/', coursesController.list)
 
 // GET a single course
-router.get('/:id', coursesController.get)
+router.get('/courses/:id', coursesController.get)
 
 // POST a new course
-router.post('/', coursesController.create)
+router.post('/courses/', coursesController.create)
 
 // DELETE a course
-router.delete('/:id', coursesController.delete)
+router.delete('/courses/:id', coursesController.delete)
 
 // Update course
-router.patch('/:id', coursesController.update)
+router.patch('/courses/:id', coursesController.update)
 
 //enroll in a course
-router.post('/enroll/:id', protect, coursesController.enroll);
+router.post('/courses/enroll/:id', protect, coursesController.enroll);
+
+//get my courses
+router.get('/mycourses', protect, coursesController.myCourses);
 
 module.exports = router
