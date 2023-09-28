@@ -1,3 +1,4 @@
+//AuthContext.js
 import { createContext, useReducer, useEffect } from 'react';
 
 // Define role constants
@@ -42,15 +43,30 @@ export const AuthContextProvider = ({ children }) => {
 
     if (user) {
       dispatch({ type: 'LOGIN', payload: user });
-      // Convert number role to string role
-      dispatch({ type: 'SET_ROLE', payload: user.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER });
+      
+      if (user.role === 0) {
+        dispatch({ type: 'SET_ROLE', payload: ROLE.CUSTOMER });
+      } else if (user.role === 1) {  // Assuming 1 is for TEACHER
+        dispatch({ type: 'SET_ROLE', payload: ROLE.TEACHER });
+      } else {
+        console.log('Invalid role:', user.role);
+      }
     }
   }, []);
-
+  const fetchWithToken = async (url, options = {}) => {
+    const token = localStorage.getItem('token');
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      ...options.headers,
+    };
+    
+    const response = await fetch(url, { ...options, headers });
+    return response;
+  };
   console.log('AuthContext state:', state);
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, dispatch, fetchWithToken }}>
       {children}
     </AuthContext.Provider>
   );

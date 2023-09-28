@@ -14,6 +14,7 @@ import EditCourses from "./pages/EditCourses";
 import Register from "./pages/Register";
 import GlobalContext from "./components/GlobalContext";
 import Login from "./pages/Login";
+import MyCourses from "./pages/MyCourses";
 
 function App() {
   const currentUserContext = useState(null);
@@ -34,6 +35,7 @@ function App() {
             <Route path="editcourses" element={<EditCourses />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
+            <Route path="mycourses" element={<MyCourses />} />
           </Route>
         </Routes>
       </GlobalContext.Provider>
