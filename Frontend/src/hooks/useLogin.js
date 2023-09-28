@@ -21,6 +21,7 @@ export const useLogin = () => {
         const json = await response.json();
         localStorage.setItem('user', JSON.stringify(json));
         dispatch({ type: 'LOGIN', payload: json });
+        return json; 
       } else {
         const text = await response.text();
         console.error(`Unexpected response: ${text}`);
