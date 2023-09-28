@@ -8,7 +8,7 @@ import { useLogout } from '../hooks/useLogout'
 import {AuthContext } from '../context/AuthContext.js'
 
 const Layout = () => {
-  const { user, dispatch } = useContext(AuthContext);
+  const { user,role, dispatch } = useContext(AuthContext);
   const { logout } = useLogout()
 
   const handleClick = () => {
@@ -42,7 +42,7 @@ const Layout = () => {
           {
             user ? (
               <>
-                {`Logged in as ${user.name}`}
+                {`${user.name}, you are logged in as a ${role}`}
                 <Button color="red" text="Logout" onClick={handleClick} />
               </>
            ) : (
