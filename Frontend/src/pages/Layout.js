@@ -4,10 +4,17 @@ import "../styles/App.css";
 import "../styles/Navbar.css";
 import Button from "../components/Button";
 import GlobalContext from "../components/GlobalContext";
+import { useLogout } from '../hooks/useLogout'
+import {AuthContext } from '../context/AuthContext.js'
 
 const Layout = () => {
-  const { currentUserContext } = useContext(GlobalContext);
-  const [currentUser, setCurrentUser] = currentUserContext;
+  const { user, dispatch } = useContext(AuthContext);
+  const { logout } = useLogout()
+
+  const handleClick = () => {
+    logout();
+    dispatch({ type: 'LOGOUT' });  // Using dispatch from AuthContext
+  }
 
   return (
     <>
@@ -32,17 +39,23 @@ const Layout = () => {
             </li>
           </ul>
           <div className="two-buttons">
-              {
-              currentUser && `Logged in as ${currentUser.name}` ||
+          {
+            user ? (
+              <>
+                {`Logged in as ${user.name}`}
+                <Button color="red" text="Logout" onClick={handleClick} />
+              </>
+           ) : (
                 <>
-                <Link to='/register'>
-                  <Button color="coral" text="Join Us" />
-                </Link>
-                <Link to='/login'>
-                  <Button color="blue" text="Log in" />
-                </Link>
+                  <Link to="/register">
+                    <Button color="coral" text="Join Us" />
+                  </Link>
+                  <Link to="/login">
+                      <Button color="blue" text="Log in" />
+                  </Link>
                 </>
-              }
+  )
+}
           </div>
         </nav>
 

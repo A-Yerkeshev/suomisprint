@@ -1,4 +1,18 @@
 /* Style the form container */
+
+.error {
+  color: red;
+  background-color: #f2dede;
+  border: 2px solid red;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+
+
 .register-table {
     max-width: 800px;
     margin: 0 auto;
