@@ -233,10 +233,32 @@ const toCamelCase = (obj) => {
   return res;
 }
 
+//enroll
+const enroll = async (req, res) => {
+  const courseId = req.params.id;
+  const userId = req.user._id;
+
+  const course = await Course.findById(courseId);
+  if (!course) {
+    return res.status(404).json({ error: "Course not found" });
+  }
+
+  if (course.enrolled.includes(userId)) {
+    return res.status(400).json({ message: "You have already enrolled in this course" });
+  }
+
+  course.enrolled.push(userId);
+  await course.save();
+
+  res.status(200).json({ message: "Successfully enrolled" });
+}
+
+
 module.exports = {
   list,
   get,
   create,
   delete: remove,
-  update
+  update,
+  enroll
 }

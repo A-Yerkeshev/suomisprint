@@ -11,7 +11,7 @@ const courseSchema = new Schema({
   image_url: {type: String},
   price: {type: Number},
   max_students: {type: Number},
-  enrolled: {type: Array},
+  enrolled: [{ type: Schema.ObjectId, ref: 'User' }], // store an array of user IDs who have enrolled in the course.
   start_date: {type: Date},
   end_date: {type: Date},
   start_time: {type: Number},
