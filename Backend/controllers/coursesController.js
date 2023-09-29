@@ -244,13 +244,46 @@ const enroll = async (req, res) => {
   }
 
   if (course.enrolled.includes(userId)) {
-    return res.status(400).json({ message: "You have already enrolled in this course" });
+    return res.status(400).json({ error: "You have already enrolled in this course" });
   }
 
   course.enrolled.push(userId);
   await course.save();
 
   res.status(200).json({ message: "Successfully enrolled" });
+}
+
+// DELETE /api/courses/enroll/:id
+const cancelEnrollment = async (req, res) => {
+  const courseId = req.params.id;
+  const userId = req.user._id;
+
+  if (!courseId) {
+    res.status(400).json({error: 'Please, provide course id in request params.'});
+    return;
+  }
+
+  const course = await Course.findById(courseId);
+
+  if (!course) {
+    res.status(400).json({error: `Course with id ${courseId} was not found.`});
+    return;
+  }
+
+  const index = course.enrolled.indexOf(userId);
+
+  if (index === -1) {
+    res.status(400).json({error: 'User is not enrolled to this course'});
+    return;
+  }
+
+  course.splice(index, 1);
+
+  try {
+    await course.save();
+  } catch(err) {
+    res.status(500).json({error: `Failed to save to the database. Error: ${err}`});
+  }
 }
 
 const myCourses = async (req, res) => {
@@ -274,5 +307,6 @@ module.exports = {
   delete: remove,
   update,
   enroll,
-  myCourses
+  myCourses,
+  cancelEnrollment
 }
