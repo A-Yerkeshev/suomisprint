@@ -277,10 +277,11 @@ const cancelEnrollment = async (req, res) => {
     return;
   }
 
-  course.splice(index, 1);
+  course.enrolled.splice(index, 1);
 
   try {
     await course.save();
+    res.status(200).json({message: 'Successfully cancelled enrollment.'})
   } catch(err) {
     res.status(500).json({error: `Failed to save to the database. Error: ${err}`});
   }
