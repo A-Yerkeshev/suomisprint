@@ -42,8 +42,8 @@ function MyCourses() {
         </p>}
         {courses.map((course, index) => (
           <Card
-            key={course._id}
-            id={course._id}
+            key={course.Id}
+            id={course.Id}
             level={course.level}
             name={course.title}
             img={course.imageUrl}
