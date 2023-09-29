@@ -1,14 +1,16 @@
 /* Style the form container */
 
+
 .error {
-  color: red;
-  background-color: #f2dede;
-  border: 2px solid red;
-  padding: 10px;
-  margin-top: 10px;
+  color: white;
+  background-color: #ff4c4c; /* Use a different background color for errors */
+  border: 2px solid #ff0000; /* Darker red border */
+  margin-top: 20px ; /* Increased margin-top for more space */
   border-radius: 5px;
-  font-size: 1.2em;
+  font-size: 16px ;
   font-weight: bold;
+  text-align: center; /* Center the text horizontally */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Add a subtle shadow */
 }
 
 
@@ -23,7 +25,7 @@
   
 .register-table div {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 15px;
     padding: 20px;
   
   }
@@ -53,7 +55,7 @@
   
   /* Style the Register button */
   .register-table .register-button {
-    padding: 15px 25px;
+    padding: 15px 25px 15px 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     cursor: pointer;

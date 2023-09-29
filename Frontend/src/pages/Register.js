@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useRegister } from '../hooks/useRegister';
-import { useLogin } from '../hooks/useLogin';
+import { useRegister } from "../hooks/useRegister";
+import { useLogin } from "../hooks/useLogin";
 import "../styles/Register.css";
 
 function Register() {
@@ -39,16 +39,11 @@ function Register() {
     await register(user);
     if (error) {
       console.log("Error exists: ", error); // Debug line to ensure error exists.
-      return (
-        <div className="error">
-          {error}
-        </div>
-      );
+      return <div className="error">{error}</div>;
     }
 
     login(user.email, user.password); // Assuming the 'user' object now includes the server response
     redirect("/courses");
-
   };
 
   return (
@@ -113,10 +108,15 @@ function Register() {
           />
           <label htmlFor="role">I want to publish my courses</label>
         </div>
-        <button disabled={isLoading} className="register-button" type="button" onClick={submit}>
+        <button
+          disabled={isLoading}
+          className="register-button"
+          type="button"
+          onClick={submit}
+        >
           Register
         </button>
-        {error&&<div className="error">{error}</div>}
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );
