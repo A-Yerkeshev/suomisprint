@@ -258,11 +258,9 @@ const myCourses = async (req, res) => {
     const userId = req.user._id;
     const courses = await Course.find({ enrolled: userId });
 
-    if (!courses || courses.length === 0) {
-      return res.status(200).json({ message: 'No enrolled courses found.' });
-    }
+    const camelCased = courses.map((course) => toCamelCase(course.toObject()));
 
-    res.status(200).json(courses);
+    res.status(200).json(camelCased);
   } catch (err) {
     res.status(500).json({ error: `Failed to fetch courses. Error: ${err}` });
   }

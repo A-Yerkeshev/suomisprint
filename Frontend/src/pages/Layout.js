@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import GlobalContext from "../components/GlobalContext";
 import { useLogout } from '../hooks/useLogout'
 import {AuthContext } from '../context/AuthContext.js'
+import { ROLE } from '../context/AuthContext.js';
 
 const Layout = () => {
   const { user,role, dispatch } = useContext(AuthContext);
@@ -34,9 +35,11 @@ const Layout = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/teacher">For teachers</Link>
-            </li>
+            {role && (
+              <li>
+                  <Link to="/mycourses">My courses</Link>
+              </li>
+            )}
           </ul>
           <div className="two-buttons">
           {

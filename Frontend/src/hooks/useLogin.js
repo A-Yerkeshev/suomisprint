@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuthContext } from './useAuthContext';
+import { ROLE } from '../context/AuthContext';
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
@@ -20,8 +21,12 @@ export const useLogin = () => {
       if (response.ok) {
         const json = await response.json();
         localStorage.setItem('user', JSON.stringify(json));
+
+        const role = json.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER;
+
         dispatch({ type: 'LOGIN', payload: json });
-        return json; 
+        dispatch({ type: 'SET_ROLE', payload: role });
+        return json;
       } else {
         const text = await response.text();
         console.error(`Unexpected response: ${text}`);

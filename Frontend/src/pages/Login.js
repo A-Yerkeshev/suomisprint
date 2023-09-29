@@ -23,28 +23,24 @@ function Login() {
     event.preventDefault();
     try {
       const userData = await login(credentials.email, credentials.password); 
-      console.log("Received userData:", userData);
-    if (userData) {
-      // Store the converted role in userData
-      userData.role = userData.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER;
-      console.log("Transformed role:", userData.role); 
-      
-      // Update the role in localStorage
-      localStorage.setItem('user', JSON.stringify(userData));
-
-      dispatch({ type: 'LOGIN', payload: userData });
-      dispatch({ type: 'SET_ROLE', payload: userData.role });
-
-      console.log("Role from Constant:", ROLE.CUSTOMER, ROLE.TEACHER);
-
+      if (userData) {
+        // Convert role to readable form
+        userData.role = userData.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER;
+        console.log("Transformed role:", userData.role); 
+  
+        // Store user details in localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+  
+        // Update AuthContext
+        dispatch({ type: 'LOGIN', payload: userData });
+        dispatch({ type: 'SET_ROLE', payload: userData.role });
+  
+        // Navigate based on role
         if (userData.role === ROLE.CUSTOMER) {
-          console.log("Navigating to /courses");
           navigate('/courses');
-        }else if (userData.role === ROLE.TEACHER) {
+        } else if (userData.role === ROLE.TEACHER) {
           navigate('/');
-        }
-        else {
-          console.log("Navigating to /home");
+        } else {
           navigate('/register');
         }
       }

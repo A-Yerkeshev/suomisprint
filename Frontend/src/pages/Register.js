@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import GlobalContext from "../components/GlobalContext";
-import { useRegister } from '../hooks/useRegister'; 
+import { useRegister } from '../hooks/useRegister';
+import { useLogin } from '../hooks/useLogin';
 import "../styles/Register.css";
 
 function Register() {
@@ -12,12 +12,11 @@ function Register() {
     role: 0,
   });
   const [repPassword, setRepPassword] = useState("");
-  const { currentUserContext } = useContext(GlobalContext);
-  const [currentUser, setCurrentUser] = currentUserContext;
   const redirect = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
 
-  const { register, isLoading, error } = useRegister(); 
+  const { register, isLoading, error } = useRegister();
+  const { login } = useLogin();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -47,9 +46,9 @@ function Register() {
       );
     }
 
-    setCurrentUser(user); // Assuming the 'user' object now includes the server response
-    //redirect("/courses");
-    
+    login(user.email, user.password); // Assuming the 'user' object now includes the server response
+    redirect("/courses");
+
   };
 
   return (

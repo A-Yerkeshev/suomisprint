@@ -1,11 +1,20 @@
 import React from "react";
 import "../styles/CourseForm.css"; // Import the CSS file
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext, ROLE } from '../context/AuthContext.js';
 import GlobalContext from "../components/GlobalContext";
 
 function CourseForm(props) {
+  const { role } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (role !== ROLE.TEACHER) {
+      navigate('/');  // Redirect to home page
+    }
+  }, [role, navigate]);
+
   const { currentUserContext } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = currentUserContext;
   const providerId = (currentUser && currentUser.Id) || "";
