@@ -23,7 +23,6 @@ export const useLogin = () => {
         localStorage.setItem('user', JSON.stringify(json));
 
         const role = json.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER;
-        console.log('JSON', json.role)
 
         dispatch({ type: 'LOGIN', payload: json });
         dispatch({ type: 'SET_ROLE', payload: role });
