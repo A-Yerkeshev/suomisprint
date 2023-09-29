@@ -233,10 +233,46 @@ const toCamelCase = (obj) => {
   return res;
 }
 
+//enroll
+const enroll = async (req, res) => {
+  const courseId = req.params.id;
+  const userId = req.user._id;
+
+  const course = await Course.findById(courseId);
+  if (!course) {
+    return res.status(404).json({ error: "Course not found" });
+  }
+
+  if (course.enrolled.includes(userId)) {
+    return res.status(400).json({ message: "You have already enrolled in this course" });
+  }
+
+  course.enrolled.push(userId);
+  await course.save();
+
+  res.status(200).json({ message: "Successfully enrolled" });
+}
+
+const myCourses = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const courses = await Course.find({ enrolled: userId });
+
+    const camelCased = courses.map((course) => toCamelCase(course.toObject()));
+
+    res.status(200).json(camelCased);
+  } catch (err) {
+    res.status(500).json({ error: `Failed to fetch courses. Error: ${err}` });
+  }
+};
+
+
 module.exports = {
   list,
   get,
   create,
   delete: remove,
-  update
+  update,
+  enroll,
+  myCourses
 }

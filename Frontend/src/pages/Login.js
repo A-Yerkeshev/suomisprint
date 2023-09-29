@@ -1,72 +1,87 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import GlobalContext from "../components/GlobalContext";
+import { AuthContext, ROLE } from "../context/AuthContext.js";
 import { useLogin } from "../hooks/useLogin";
 
 function Login() {
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
-  });
-
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
   const { login, isLoading, error } = useLogin();
-  const { currentUserContext } = useContext(GlobalContext);
-  const [currentUser, setCurrentUser] = currentUserContext;
-  //const redirect = useNavigate();
+  const { user, role, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("Role changed:", role);
+  }, [role]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
-    setCredentials({
-      ...credentials,
-      [name]: value
-    });
-  }
+    setCredentials({ ...credentials, [name]: value });
+  };
 
   const submit = async (event) => {
+    console.log("Submit function triggered");
     event.preventDefault();
-
     try {
-      await login(credentials.email, credentials.password); // Use login from useLogin
-      if (!error) {
-       // redirect('/courses');
+      const userData = await login(credentials.email, credentials.password); 
+      if (userData) {
+        // Convert role to readable form
+        userData.role = userData.role === 0 ? ROLE.CUSTOMER : ROLE.TEACHER;
+        console.log("Transformed role:", userData.role); 
+  
+        // Store user details in localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+  
+        // Update AuthContext
+        dispatch({ type: 'LOGIN', payload: userData });
+        dispatch({ type: 'SET_ROLE', payload: userData.role });
+  
+        // Navigate based on role
+        if (userData.role === ROLE.CUSTOMER) {
+          navigate('/courses');
+        } else if (userData.role === ROLE.TEACHER) {
+          navigate('/');
+        } else {
+          navigate('/register');
+        }
       }
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   return (
     <div>
       <h1>Login</h1>
       <form>
         <div>
-          <label htmlFor="email">email:</label>
+          <label htmlFor="email">Email:</label>
           <input
-              type="email"
-              id="email"
-              name="email"
-              value={credentials.email}
-              onChange={handleChange}
-              required
-            />
+            type="email"
+            id="email"
+            name="email"
+            value={credentials.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
-          <label htmlFor="password">password:</label>
+          <label htmlFor="password">Password:</label>
           <input
-              type="password"
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              required
-            />
+            type="password"
+            id="password"
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button type="button" onClick={submit} disabled={isLoading}>Login</button>
+        <button type="button" onClick={submit} disabled={isLoading}>
+          Login
+        </button>
         {error && <div className="error">{error}</div>}
       </form>
     </div>
-  )
+  );
 }
 
 export default Login;

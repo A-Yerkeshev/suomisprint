@@ -6,9 +6,10 @@ import Button from "../components/Button";
 import GlobalContext from "../components/GlobalContext";
 import { useLogout } from '../hooks/useLogout'
 import {AuthContext } from '../context/AuthContext.js'
+import { ROLE } from '../context/AuthContext.js';
 
 const Layout = () => {
-  const { user, dispatch } = useContext(AuthContext);
+  const { user,role, dispatch } = useContext(AuthContext);
   const { logout } = useLogout()
 
   const handleClick = () => {
@@ -34,15 +35,17 @@ const Layout = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/teacher">For teachers</Link>
-            </li>
+            {role && (
+              <li>
+                  <Link to="/mycourses">My courses</Link>
+              </li>
+            )}
           </ul>
           <div className="two-buttons">
           {
             user ? (
               <>
-                {`Logged in as ${user.name}`}
+                {`${user.name}, you are logged in as a ${role}`}
                 <Button color="red" text="Logout" onClick={handleClick} />
               </>
            ) : (

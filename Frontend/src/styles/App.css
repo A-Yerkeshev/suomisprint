@@ -129,15 +129,13 @@ nav {
   background-color: var(--coral);
 }
 
-.man-image,
-.woman-image,
-.kid-image,
-.teacher-image {
+.big-image,
+.small-image {
   position: absolute;
   max-width: 100%;
 }
 
-.man-image, .kid-image {
+.big-image {
   width: 425px;
   height: 531px;
   left: 80px;
@@ -146,7 +144,7 @@ nav {
   border-radius: 15px; 
 }
 
-.woman-image, .teacher-image {
+.small-image {
   width: 232px;
   height: auto;
   left: 0px;
@@ -154,8 +152,7 @@ nav {
   border: 3px solid var(--white); 
   border-radius: 15px; 
 }
-.kid-image,
-.teacher-image {
+.big-image {
   object-fit: cover; 
 }
 
