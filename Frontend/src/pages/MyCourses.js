@@ -4,7 +4,7 @@ import '../styles/card.css';
 import { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import Button from "../components/Button"
+import Button from "../components/Button";
 
 function MyCourses() {
   const { fetchWithToken } = useContext(AuthContext);

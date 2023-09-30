@@ -6,7 +6,7 @@ import { AuthContext, ROLE } from '../context/AuthContext.js';
 import GlobalContext from "../components/GlobalContext";
 
 function CourseForm(props) {
-  const { role } = useContext(AuthContext);
+  const { user, role, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,9 +15,7 @@ function CourseForm(props) {
     }
   }, [role, navigate]);
 
-  const { currentUserContext } = useContext(GlobalContext);
-  const [currentUser, setCurrentUser] = currentUserContext;
-  const providerId = (currentUser && currentUser.Id) || "";
+  const providerId = (user && user.Id) || "";
 
   const [course, setCourse] = useState({
     providerId,

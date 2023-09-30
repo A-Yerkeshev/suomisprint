@@ -290,7 +290,19 @@ const cancelEnrollment = async (req, res) => {
 const myCourses = async (req, res) => {
   try {
     const userId = req.user._id;
-    const courses = await Course.find({ enrolled: userId });
+    const role = req.user.role;
+    let courses;
+
+    // If user is regular customer - fetch courses he has enrolled to
+    if (role == 0) {
+      courses = await Course.find({enrolled: userId});
+    } else if (role == 1) {
+      // If user is teacher - fetch courses he has published
+      courses = await Course.find({provider_id: userId});
+    } else {
+      res.status(400).json({error: `User role is not specified or invalid: ${role}`});
+      return;
+    }
 
     const camelCased = courses.map((course) => toCamelCase(course.toObject()));
 
