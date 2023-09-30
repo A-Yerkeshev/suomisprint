@@ -90,7 +90,6 @@ function CourseForm(props) {
     const defaultImages = [
       '../img/woman-image.png',
       '../img/a-woman-in-helsinki.png',
-      '../img/course-in-teacher-page.png',
       '../img/a-woman-with-a-book.png',
       '../img/man-in-the-sen-square.png',
       '../img/woman-with-laptop.png'
