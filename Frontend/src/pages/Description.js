@@ -7,7 +7,7 @@ const CourseDescription = () => {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id: courseId } = useParams();
-  const { fetchWithToken } = useContext(AuthContext);
+  const { user, role, dispatch , fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const CourseDescription = () => {
 
   if (loading) return <div>Loading...</div>;
 
-  const { title, level, price, description, imageUrl } = course;
+  const { title, level, price, description, imageUrl, providerId, enrolled } = course;
 
   return (
     <div className="container">
@@ -62,6 +62,14 @@ const CourseDescription = () => {
         <h4>DESCRIPTION</h4>
         <p className="p-description">{description}</p>
         <button className="add-course-button" onClick={handleEnroll}>Enroll</button>
+        {(user && providerId === user.Id) && <div>
+          <h4>Enrolled: </h4>
+          <ul>
+            {enrolled.map((user) =>
+              <li>{user.name}</li>
+            )}
+          </ul>
+        </div>}
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import "../styles/CourseForm.css"; // Import the CSS file
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext, ROLE } from '../context/AuthContext.js';
-import GlobalContext from "../components/GlobalContext";
 
 function CourseForm(props) {
   const { user, role, dispatch } = useContext(AuthContext);

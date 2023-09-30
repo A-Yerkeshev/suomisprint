@@ -1,4 +1,5 @@
 const Course = require('../models/courseModel');
+const User = require('../models/userModel');
 const mongoose = require('mongoose');
 
 // GET /api/courses
@@ -25,7 +26,10 @@ const get = async (req, res) => {
     return;
   }
 
-  res.status(200).json(toCamelCase(course.toObject()));
+  // Fetch users, enrolled to this course
+  const users = await User.find({'_id': { $in: course.enrolled}}).select('-password -createdAt -updatedAt');
+
+  res.status(200).json(toCamelCase({...course.toObject(), enrolled: users}));
 }
 
 // DELETE /api/courses/:id

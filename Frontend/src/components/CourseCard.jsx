@@ -1,10 +1,14 @@
 import React from "react";
 import "../styles/card.css"; // Import the CSS
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Card(props) {
   const { courses, setCourses } = props;
   const redirect = useNavigate();
+  const { user, role, dispatch } = useContext(AuthContext);
+  const location = useLocation();
 
   const handleDelete = async () => {
     try {
@@ -27,6 +31,43 @@ function Card(props) {
     }
   };
 
+  let buttons = <button
+    className="button-on-card"
+    onClick={() => {
+      redirect(`/description/${props.id}`);
+    }}
+  >
+    Learn More
+  </button>;
+
+  // If this course was published by current user, add edit and delete buttons
+  if (props.providerId === user.Id && location.pathname.split("/")[1] === 'mycourses') {
+    buttons = <>
+      <button
+        className="button-on-card"
+        onClick={() => {
+          redirect(`/description/${props.id}`);
+        }}
+      >
+        Learn More
+      </button>
+      <button
+        className="button-on-card button-narrow"
+        onClick={() => {
+          redirect(`/editcourse/${props.id}`);
+        }}
+      >
+        Edit
+      </button>
+      <button
+        className="button-on-card button-narrow button-delete"
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
+      </>
+  }
+
   return (
     <div className="courses-card">
       <div className="card">
@@ -38,14 +79,7 @@ function Card(props) {
           <h2>{props.name}</h2>
           <p>{props.description}</p>
           <p>&euro;{props.price}</p>
-          <button
-            className="button-on-card"
-            onClick={() => {
-              redirect(`/description/${props.id}`);
-            }}
-          >
-            Learn More
-          </button>
+          {buttons}
         </div>
       </div>
     </div>

@@ -44,6 +44,7 @@ function MyCourses() {
           <Card
             key={course.Id}
             id={course.Id}
+            providerId={course.providerId}
             level={course.level}
             name={course.title}
             img={course.imageUrl}
