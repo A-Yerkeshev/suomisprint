@@ -7,11 +7,26 @@ const CourseDescription = () => {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id: courseId } = useParams();
+  const { role, fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { user, fetchWithToken, role } = useContext(AuthContext);
-  const [isEnrolled, setIsEnrolled] = useState(false);
+  const [isEnrolled, setIsEnrolled] = useState(null);
 
   useEffect(() => {
+    const checkIfEnrolled = async () => {
+      try {
+        const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
+        const res = await fetchWithToken(url, { method: 'GET' });
+        const data = await res.json();
+        
+        if (data.isEnrolled) {
+          setIsEnrolled(true);
+        } else {
+          setIsEnrolled(false);
+        }
+      } catch (err) {
+        console.error("Error checking enrollment:", err);
+      }
+    };
     const fetchCourse = async () => {
       try {
         setLoading(true);
@@ -27,24 +42,47 @@ const CourseDescription = () => {
     };
 
     fetchCourse();
-  }, [courseId]);
+    checkIfEnrolled();
+  }, [courseId, fetchWithToken]);
 
   const handleEnroll = async () => {
     try {
       const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
+      let method = 'POST';
+      let action = 'enrolling';
+  
+      if (isEnrolled) {
+        method = 'DELETE';
+        action = 'canceling enrollment';
+      }
+  
       const res = await fetchWithToken(url, {
-        method: 'POST',
+        method,
       });
-
+  
       if (!res.ok) {
         const e = await res.json();
         throw new Error(e.error);
       }
-
-      navigate('/mycourses');
+  
+      // Toggle the enrollment status after successful operation
+      setIsEnrolled(!isEnrolled);
+  
+      console.log(`Successfully ${action}`);
     } catch (err) {
-      console.log("Error enrolling:", err);
+      console.log(`Error ${action}:`, err);
     }
+  };
+
+  const renderButton = () => {
+    console.log("is enrolled?", isEnrolled);
+    if (!role) return <p>Register or log in to be able to enroll.</p>;
+    if (role === 'TEACHER') return null;
+    return (
+      <button className="add-course-button" onClick={handleEnroll}>
+        {isEnrolled ? 'Cancel Enrollment' : 'Enroll'}
+      </button>
+    );
   };
 
   if (loading) return <div>Loading...</div>;
@@ -62,7 +100,7 @@ const CourseDescription = () => {
         <h3 className="h3-description">${price}</h3>
         <h4>DESCRIPTION</h4>
         <p className="p-description">{description}</p>
-        <button className="add-course-button" onClick={handleEnroll}>Enroll</button>
+        {renderButton()}
       </div>
     </div>
   );
