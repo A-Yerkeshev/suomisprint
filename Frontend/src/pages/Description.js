@@ -7,8 +7,9 @@ const CourseDescription = () => {
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id: courseId } = useParams();
-  const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { user, fetchWithToken, role } = useContext(AuthContext);
+  const [isEnrolled, setIsEnrolled] = useState(false);
 
   useEffect(() => {
     const fetchCourse = async () => {
