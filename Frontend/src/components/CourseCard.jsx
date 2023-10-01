@@ -49,14 +49,22 @@ function Card(props) {
             Learn More
           </button>
           {role === "TEACHER" && (
-            <button
-              className="button-on-card button-narrow"
-              onClick={() => {
-                redirect(`/editcourse/${props.id}`);
-              }}
-            >
-              Edit
-            </button>
+            <>
+              <button
+                className="button-on-card button-narrow"
+                onClick={() => {
+                  redirect(`/editcourse/${props.id}`);
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className="button-on-card button-narrow button-delete"
+                onClick={handleDelete}
+              >
+                Delete
+              </button>
+            </>
           )}
         </div>
       </div>
