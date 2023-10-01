@@ -23,6 +23,9 @@ router.patch('/courses/:id', coursesController.update)
 //enroll in a course
 router.post('/courses/enroll/:id', protect, coursesController.enroll);
 
+//check if enrolled
+router.get('/courses/enroll/:id', protect, coursesController.isEnrolled);
+
 // Cancel enrollment
 router.delete('/courses/enroll/:id', protect, coursesController.cancelEnrollment);
 

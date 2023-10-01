@@ -9,8 +9,24 @@ const CourseDescription = () => {
   const { id: courseId } = useParams();
   const { user, role, dispatch , fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isEnrolled, setIsEnrolled] = useState(null);
 
   useEffect(() => {
+    const checkIfEnrolled = async () => {
+      try {
+        const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
+        const res = await fetchWithToken(url, { method: 'GET' });
+        const data = await res.json();
+
+        if (data.isEnrolled) {
+          setIsEnrolled(true);
+        } else {
+          setIsEnrolled(false);
+        }
+      } catch (err) {
+        console.error("Error checking enrollment:", err);
+      }
+    };
     const fetchCourse = async () => {
       try {
         setLoading(true);
@@ -26,13 +42,22 @@ const CourseDescription = () => {
     };
 
     fetchCourse();
-  }, [courseId]);
+    checkIfEnrolled();
+  }, [courseId, fetchWithToken]);
 
   const handleEnroll = async () => {
     try {
       const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
+      let method = 'POST';
+      let action = 'enrolling';
+
+      if (isEnrolled) {
+        method = 'DELETE';
+        action = 'canceling enrollment';
+      }
+
       const res = await fetchWithToken(url, {
-        method: 'POST',
+        method,
       });
 
       if (!res.ok) {
@@ -40,10 +65,33 @@ const CourseDescription = () => {
         throw new Error(e.error);
       }
 
-      navigate('/mycourses');
+      // Toggle the enrollment status after successful operation
+      setIsEnrolled(!isEnrolled);
+
+      console.log(`Successfully ${action}`);
     } catch (err) {
-      console.log("Error enrolling:", err);
+      console.log(`Error:`, err);
     }
+  };
+
+  const renderButton = () => {
+    console.log("is enrolled?", isEnrolled);
+    if (!role) return <p>Register or log in to be able to enroll.</p>;
+    if (role === 'TEACHER') return (
+      <button
+            className="button-on-card button-narrow"
+            onClick={() => {
+              navigate(`/editcourse/${courseId}`);
+            }}
+          >
+          Edit
+        </button>
+    );
+    return (
+      <button className="add-course-button" onClick={handleEnroll}>
+        {isEnrolled ? 'Cancel Enrollment' : 'Enroll'}
+      </button>
+    );
   };
 
   if (loading) return <div>Loading...</div>;
