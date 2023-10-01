@@ -1,10 +1,12 @@
-import React from "react";
-import "../styles/card.css"; // Import the CSS
+import React, { useContext } from "react";
+import "../styles/card.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext.js";
 
 function Card(props) {
   const { courses, setCourses } = props;
   const redirect = useNavigate();
+  const { role, fetchWithToken } = useContext(AuthContext);
 
   const handleDelete = async () => {
     try {
@@ -46,6 +48,16 @@ function Card(props) {
           >
             Learn More
           </button>
+          {role === "TEACHER" && (
+            <button
+              className="button-on-card button-narrow"
+              onClick={() => {
+                redirect(`/editcourse/${props.id}`);
+              }}
+            >
+              Edit
+            </button>
+          )}
         </div>
       </div>
     </div>
