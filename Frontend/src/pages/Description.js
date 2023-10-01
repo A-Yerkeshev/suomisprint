@@ -17,7 +17,7 @@ const CourseDescription = () => {
         const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
         const res = await fetchWithToken(url, { method: 'GET' });
         const data = await res.json();
-        
+
         if (data.isEnrolled) {
           setIsEnrolled(true);
         } else {
@@ -50,27 +50,27 @@ const CourseDescription = () => {
       const url = `${process.env.REACT_APP_BACKEND_URL}/api/courses/enroll/${courseId}`;
       let method = 'POST';
       let action = 'enrolling';
-  
+
       if (isEnrolled) {
         method = 'DELETE';
         action = 'canceling enrollment';
       }
-  
+
       const res = await fetchWithToken(url, {
         method,
       });
-  
+
       if (!res.ok) {
         const e = await res.json();
         throw new Error(e.error);
       }
-  
+
       // Toggle the enrollment status after successful operation
       setIsEnrolled(!isEnrolled);
-  
+
       console.log(`Successfully ${action}`);
     } catch (err) {
-      console.log(`Error ${action}:`, err);
+      console.log(`Error:`, err);
     }
   };
 
