@@ -109,7 +109,7 @@ const CourseDescription = () => {
         <h3 className="h3-description">${price}</h3>
         <h4>DESCRIPTION</h4>
         <p className="p-description">{description}</p>
-        <button className="add-course-button" onClick={handleEnroll}>Enroll</button>
+        {renderButton()}
         {(user && providerId === user.Id) && <div>
           <h4>Enrolled: </h4>
           <ul>
