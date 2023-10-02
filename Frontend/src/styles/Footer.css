@@ -1,0 +1,12 @@
+/* src/styles/Footer.css */
+
+.footer {
+    background-color : rgb(41, 41, 84);
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 1; 
+  }
