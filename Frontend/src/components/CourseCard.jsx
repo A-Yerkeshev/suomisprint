@@ -1,3 +1,4 @@
+//CourseCard.jsx
 import React from "react";
 import "../styles/card.css"; // Import the CSS
 import { useNavigate, useLocation } from "react-router-dom";
@@ -31,41 +32,49 @@ function Card(props) {
     }
   };
 
-  let buttons = <button
-    className="button-on-card"
-    onClick={() => {
-      redirect(`/description/${props.id}`);
-    }}
-  >
-    Learn More
-  </button>;
+  let buttons = (
+    <button
+      className="button-on-card"
+      onClick={() => {
+        redirect(`/description/${props.id}`);
+      }}
+    >
+      Learn More
+    </button>
+  );
 
   // If this course was published by current user, add edit and delete buttons
-  if (props.providerId === user.Id && location.pathname.split("/")[1] === 'mycourses') {
-    buttons = <>
-      <button
-        className="button-on-card"
-        onClick={() => {
-          redirect(`/description/${props.id}`);
-        }}
-      >
-        Learn More
-      </button>
-      <button
-        className="button-on-card button-narrow"
-        onClick={() => {
-          redirect(`/editcourse/${props.id}`);
-        }}
-      >
-        Edit
-      </button>
-      <button
-        className="button-on-card button-narrow button-delete"
-        onClick={handleDelete}
-      >
-        Delete
-      </button>
+  if (
+    user &&
+    props.providerId === user.Id &&
+    location.pathname.split("/")[1] === "mycourses"
+  ) {
+    buttons = (
+      <>
+        <button
+          className="button-on-card"
+          onClick={() => {
+            redirect(`/description/${props.id}`);
+          }}
+        >
+          Learn More
+        </button>
+        <button
+          className="button-on-card button-narrow"
+          onClick={() => {
+            redirect(`/editcourse/${props.id}`);
+          }}
+        >
+          Edit
+        </button>
+        <button
+          className="button-on-card button-narrow button-delete"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
       </>
+    );
   }
 
   return (

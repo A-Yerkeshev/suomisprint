@@ -1,3 +1,4 @@
+//courses.js
 import React from "react";
 import Card from "../components/CourseCard";
 import '../styles/card.css'; 
