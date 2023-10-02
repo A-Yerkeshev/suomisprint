@@ -59,6 +59,7 @@ function Card(props) {
         >
           Learn More
         </button>
+        <br></br>
         <button
           className="button-on-card button-narrow"
           onClick={() => {

@@ -22,7 +22,7 @@ function Home() {
   };
 
   const handleEditClick = () => {
-    navigate("/editcourses");
+    navigate("/mycourses");
   };
 
   return (
@@ -40,7 +40,7 @@ function Home() {
         <div className="two-buttons">
           {role === 'TEACHER' && (
             <>
-              <Button color="coral" onClick={handleEditClick} text="Edit courses" />
+              <Button color="coral" onClick={handleEditClick} text="My courses" />
               <Button color="blue" onClick={handleCourseClick} text="Add course" />
             </>
           )}
