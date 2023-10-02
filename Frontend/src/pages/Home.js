@@ -7,6 +7,7 @@ import kidImage from '../img/kid-image.png';
 import teacherImage from '../img/teacher-image.png';
 import Button from '../components/Button';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
   const navigate = useNavigate();
@@ -45,8 +46,12 @@ function Home() {
           )}
           {role === null && (
             <>
-              <Button color="coral" text="Join Us" />
-              <Button color="blue" onClick={handleLearnMoreClick} text="Learn More" />
+              <Link to="/register">
+                    <Button color="coral" text="Join Us" />
+              </Link>
+              <Link to="/login">
+                      <Button color="blue" text="Log in" />
+              </Link>
             </>
           )}
         </div>
