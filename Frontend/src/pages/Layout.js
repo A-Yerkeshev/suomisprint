@@ -45,7 +45,9 @@ const Layout = () => {
           {
             user ? (
               <>
-                {`${user.name}, you are logged in as a ${role}`}
+                <div className="user-role-info">
+                    {`${user.name}, you are logged in as a ${role}`}
+                </div>
                 <Button color="red" text="Logout" onClick={handleClick} />
               </>
            ) : (
