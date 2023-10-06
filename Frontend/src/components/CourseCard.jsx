@@ -41,7 +41,7 @@ function Card(props) {
   </button>;
 
   // If this course was published by current user, add edit and delete buttons
-  if (props.providerId === user.Id && location.pathname.split("/")[1] === 'mycourses') {
+  if (user && props.providerId === user.Id && location.pathname.split("/")[1] === 'mycourses') {
     buttons = <>
       <button
         className="button-on-card"
