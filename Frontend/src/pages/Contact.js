@@ -33,7 +33,7 @@ function Contact(props) {
 
   return (
     <div className="contact-container">
-    <div>
+    <div className="contact-form-container">
       <h2>Contact Us</h2>
       <form onSubmit={onSubmit}>
         <div>
@@ -72,7 +72,7 @@ function Contact(props) {
             value={comments}
           />
         </div>
-        <button class="btn-submit">Submit</button>
+        <button className="button-on-card">Submit</button>
       </form>
         <div>
           <h3> Company Information</h3>

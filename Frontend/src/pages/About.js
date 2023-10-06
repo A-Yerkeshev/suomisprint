@@ -1,14 +1,15 @@
 // src/components/About.js
 import React from 'react';
+import '../styles/About.css';
 
 function About() {
     return (
-      <section>
-        <div>
+      <section className="about-container">
+        <div className="about-heading">
           <h1>About Us</h1>
         </div>
 
-        <div> 
+        <div className="about-description"> 
           <h2>Suomisprint-Your gateway to Finnish language mastery.</h2>
           
           <p>
@@ -18,7 +19,7 @@ function About() {
           goals.
           </p>
         </div>
-        <div>
+        <div className="about-features">
           <h3> Why choose SuomiSprint? </h3>
           <ul>
           

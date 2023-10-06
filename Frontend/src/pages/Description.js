@@ -78,14 +78,8 @@ const CourseDescription = () => {
     console.log("is enrolled?", isEnrolled);
     if (!role) return <p>Register or log in to be able to enroll.</p>;
     if (role === 'TEACHER') return (
-      <button
-            className="button-on-card button-narrow"
-            onClick={() => {
-              navigate(`/editcourse/${courseId}`);
-            }}
-          >
-          Edit
-        </button>
+
+      <></>
     );
     return (
       <button className="add-course-button" onClick={handleEnroll}>
@@ -109,7 +103,7 @@ const CourseDescription = () => {
         <h3 className="h3-description">${price}</h3>
         <h4>DESCRIPTION</h4>
         <p className="p-description">{description}</p>
-        <button className="add-course-button" onClick={handleEnroll}>Enroll</button>
+        {renderButton()}
         {(user && providerId === user.Id) && <div>
           <h4>Enrolled: </h4>
           <ul>
