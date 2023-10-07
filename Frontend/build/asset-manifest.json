@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aa16a8cf.css",
+    "main.js": "/static/js/main.df307503.js",
+    "static/media/man-in-the-sen-square.png": "/static/media/man-in-the-sen-square.085d35d1784ea91fc437.png",
+    "static/media/kid-image.png": "/static/media/kid-image.fb666f47821aa9a47130.png",
+    "static/media/teacher-image.png": "/static/media/teacher-image.42761e3d92c75742b5d4.png",
+    "static/media/woman-image.png": "/static/media/woman-image.8a1256ce03587d5f8ec2.png",
+    "index.html": "/index.html",
+    "main.aa16a8cf.css.map": "/static/css/main.aa16a8cf.css.map",
+    "main.df307503.js.map": "/static/js/main.df307503.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aa16a8cf.css",
+    "static/js/main.df307503.js"
+  ]
+}
