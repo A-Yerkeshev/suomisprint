@@ -87,7 +87,7 @@ function Card(props) {
         <div className="bottom-card">
           <p>{props.level}</p>
           <h2>{props.name}</h2>
-          <p>{props.description}</p>
+          <p>{props.short_description}</p>
           <p>&euro;{props.price}</p>
           {buttons}
         </div>
