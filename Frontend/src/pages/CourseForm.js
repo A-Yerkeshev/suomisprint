@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext, ROLE } from '../context/AuthContext.js';
 
 function CourseForm(props) {
-  const { user, role, dispatch } = useContext(AuthContext);
+  const { user, role, fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,7 +101,7 @@ function CourseForm(props) {
       const endpoint =
         action === "PATCH" ? `/api/courses/${id}` : "/api/courses";
 
-      const res = await fetch(process.env.REACT_APP_BACKEND_URL + endpoint, {
+      const res = await fetchWithToken(process.env.REACT_APP_BACKEND_URL + endpoint, {
         method: action,
         headers: {
           "Content-Type": "application/json",

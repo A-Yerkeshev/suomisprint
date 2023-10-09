@@ -8,12 +8,12 @@ import { AuthContext } from "../context/AuthContext";
 function Card(props) {
   const { courses, setCourses } = props;
   const redirect = useNavigate();
-  const { user, role, dispatch } = useContext(AuthContext);
+  const { user, fetchWithToken } = useContext(AuthContext);
   const location = useLocation();
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(
+      const res = await fetchWithToken(
         process.env.REACT_APP_BACKEND_URL + "/api/courses/" + props.id,
         {
           method: "DELETE",

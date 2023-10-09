@@ -264,18 +264,18 @@ const isEnrolled = async (req, res) => {
     const userId = req.user._id;
 
     const course = await Course.findById(courseId);
-  
+
     if (!course) {
       return res.status(404).json({ error: "Course not found" });
     }
-  
+
     const isEnrolled = course.enrolled.includes(userId);
-    
+
     res.status(200).json({ isEnrolled });
 
   } catch (err) {
     if (err.name === 'CastError') {
-      console.error("Invalid course ID provided");  
+      console.error("Invalid course ID provided");
       return res.status(400).json({ error: "Invalid course ID" });
     }
     console.error(err);  // For other errors, show the full stack trace

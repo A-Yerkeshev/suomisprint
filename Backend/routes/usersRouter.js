@@ -1,6 +1,6 @@
 const express = require('express');
 const usersController = require('../controllers/usersController');
-const { protect } = require('../middleware/authMiddleware');
+const { authenticate } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -8,10 +8,10 @@ const router = express.Router();
 router.post('/', usersController.register);
 
 // Update user
-router.patch('/', protect, usersController.update);
+router.patch('/', authenticate, usersController.update);
 
 // Delete user
-router.delete('/', protect, usersController.delete);
+router.delete('/', authenticate, usersController.delete);
 
 // Login
 router.post('/login', usersController.login);

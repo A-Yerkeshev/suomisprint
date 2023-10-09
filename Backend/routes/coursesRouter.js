@@ -1,6 +1,7 @@
 const express = require('express');
 const coursesController = require('../controllers/coursesController');
-const { protect } = require('../middleware/authMiddleware');
+const { authenticate, authorize } = require('../middleware/authMiddleware');
+const { checkPermissions } = require('../middleware/roleMiddleware');
 
 
 const router = express.Router();
@@ -12,24 +13,24 @@ router.get('/courses/', coursesController.list)
 router.get('/courses/:id', coursesController.get)
 
 // POST a new course
-router.post('/courses/', coursesController.create)
+router.post('/courses/', authenticate, checkPermissions, coursesController.create)
 
 // DELETE a course
-router.delete('/courses/:id', coursesController.delete)
+router.delete('/courses/:id', authenticate, authorize, checkPermissions, coursesController.delete)
 
 // Update course
-router.patch('/courses/:id', coursesController.update)
+router.patch('/courses/:id', authenticate, authorize, checkPermissions, coursesController.update)
 
 //enroll in a course
-router.post('/courses/enroll/:id', protect, coursesController.enroll);
+router.post('/courses/enroll/:id', authenticate, coursesController.enroll);
 
 //check if enrolled
-router.get('/courses/enroll/:id', protect, coursesController.isEnrolled);
+router.get('/courses/enroll/:id', authenticate, coursesController.isEnrolled);
 
 // Cancel enrollment
-router.delete('/courses/enroll/:id', protect, coursesController.cancelEnrollment);
+router.delete('/courses/enroll/:id', authenticate, coursesController.cancelEnrollment);
 
 //get my courses
-router.get('/mycourses', protect, coursesController.myCourses);
+router.get('/mycourses', authenticate, coursesController.myCourses);
 
 module.exports = router
