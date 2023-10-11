@@ -58,7 +58,7 @@ export const AuthContextProvider = ({ children }) => {
     const response = await fetch(url, { ...options, headers });
     return response;
     }
-    throw new Error("No token found"); 
+    throw new Error("No token found");
   };
   console.log('AuthContext state:', state);
 

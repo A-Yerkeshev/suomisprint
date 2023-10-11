@@ -13,9 +13,8 @@ export const useLogout = () => {
 
     // dispatch logout action
     dispatch({ type: 'LOGOUT' })
-    
+    navigate('/');
   }
 
   return { logout }
-  navigate('/');
 }
