@@ -1,7 +1,7 @@
 //courses.js
 import React from "react";
 import Card from "../components/CourseCard";
-import '../styles/card.css'; 
+import '../styles/card.css';
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,7 @@ function Courses() {
             level={course.level}
             name={course.title}
             img={course.imageUrl}
-            description={course.short_description}
+            description={course.shortDescription}
             price={course.price}
             courses={courses}
             setCourses={setCourses}
