@@ -33,7 +33,7 @@ function MyCourses() {
     </div>
       <div className="card-container">
         {courses.length === 0 && <p style={{textAlign: 'center'}}>
-          You have not enrolled to any courses yet.
+          You don't have any courses yet.
           <br/>
           <br/>
           <Link to='/courses'>

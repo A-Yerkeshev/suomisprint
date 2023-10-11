@@ -35,7 +35,7 @@ function Courses() {
             level={course.level}
             name={course.title}
             img={course.imageUrl}
-            description={course.description}
+            description={course.short_description}
             price={course.price}
             courses={courses}
             setCourses={setCourses}
