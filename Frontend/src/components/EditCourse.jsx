@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 function Card(props) {
   const { courses, setCourses } = props;
+  const { fetchWithToken } = useContext(AuthContext);
   const redirect = useNavigate();
 
   const handleDelete = async () => {
     try {
-      const res = await fetch(
+      const res = await fetchWithToken(
         process.env.REACT_APP_BACKEND_URL + "/api/courses/" + props.id,
         {
           method: "DELETE",
