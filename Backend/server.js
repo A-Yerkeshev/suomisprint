@@ -6,6 +6,7 @@ const usersRouter = require('./routes/usersRouter');
 const cors = require('cors');
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./config/swagger");
+const http = require('http');
 
 // express app
 const app = express();
@@ -26,4 +27,14 @@ app.use('/api/users', usersRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+if (process.env.NODE_ENV === 'test') {
+  const server = http.createServer(app);
+  server.listen(port, () => {
+    console.log('Test environment');
+    console.log(`Server started on port ${port}`)
+  });
+} else {
+  app.listen(port, () => console.log(`Server started on port ${port}`));
+}
+
+module.exports = app;
