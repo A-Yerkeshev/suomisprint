@@ -18,7 +18,9 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.1.9",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
