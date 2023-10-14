@@ -158,14 +158,14 @@ nav {
 
 /* Media Queries for half computer screen */
 @media only screen and (max-width: 1200px) {
-  .man-image {
+  .big-image {
     width: 340px; /* 80% of 425 */
     height: 425px; /* 80% of 531 */
     left: 64px; /* 80% of 80 */
     top: 32px; /* 80% of 40 */
   }
 
-  .woman-image {
+  .small-image {
     width: 186px; /* 80% of 232 */
     height: auto;
     left: 0px;
@@ -180,14 +180,32 @@ nav {
 
 /* Media Queries for phone */
 @media only screen and (max-width: 600px) {
-  .man-image {
+
+  body {
+    margin: 0; /* You can adjust the margin as needed */
+  }
+  nav {
+    padding-left: 2rem;
+    padding-right: 2rem; /* You can adjust the padding as needed */
+  }
+
+
+  .left-section .welcome-text {
+    margin-top: 0rem; /* You can adjust the margin-top as needed */
+  }
+
+  .big-text {
+    font-size: 2rem; 
+  }
+
+  .big-image {
     width: 213px; /* 50% of 425 */
     height: 266px; /* 50% of 531 */
     left: 40px; /* 50% of 80 */
     top: 20px; /* 50% of 40 */
   }
 
-  .woman-image {
+  .small-image {
     width: 116px; /* 50% of 232 */
     height: auto;
     left: 0px;

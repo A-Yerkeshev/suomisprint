@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "start": "cross-env NODE_ENV=production node server.js",
