@@ -17,19 +17,19 @@ The application is hosted on Render for reliable deployment, and testing is impl
 <img_half_width = "230">
 
 <p align="center">
-  <img width="{{img_width}}" height="{{img_height}}" src="./assets/homepage.jpg" alt="Homepage">
+  <img width="{{img_width}}" height="{{img_height}}" src="./assets/homepage.JPG" alt="Homepage">
   <br>
   <em>Homepage</em> 
 </p>
 
 <p align="center">
-  <img width="{{img_width}}" height="{{img_height}}" src="./assets/teacher_interface.jpg" alt="Teacher Interface">
+  <img width="{{img_width}}" height="{{img_height}}" src="./assets/teacher_interface.JPG" alt="Teacher Interface">
   <br>
   <em>Teacher Interface</em>
 </p>
 
 <p align="center">
-  <img width="{{img_half_width}}" height="{{img_height}}" src="./assets/phone_interface.jpg" alt="Phone Interface">
+  <img width="{{img_half_width}}" height="{{img_height}}" src="./assets/phone_interface.JPG" alt="Phone Interface">
   <br>
   <em>Phone Interface</em>
 </p>
