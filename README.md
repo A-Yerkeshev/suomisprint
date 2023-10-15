@@ -36,7 +36,7 @@ The application is hosted on Render for reliable deployment, and testing is impl
   <img width="600" height="auto" src="./assets/courses_page.jpg" alt="Courses Page">
 </p>
 
-##💻 Tech Stack
+## 💻 Tech Stack
 
 This project is built using a versatile tech stack to provide a seamless experience for both course providers and students. The key technologies and tools include:
 
