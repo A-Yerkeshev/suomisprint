@@ -1,5 +1,7 @@
 # Metropolia Project: SuomiSprint
 
+[View the App on Render](https://suomisprint.onrender.com/)
+
 ### Authors
 
 [Anna Linden](https://github.com/AnnaLinden), [Trang Vu](https://github.com/cindy3377), [Mamita Gurung](https://github.com/Mamita123), [Arman Yerkeshev](https://github.com/A-Yerkeshev)
@@ -10,6 +12,33 @@ This is a MERN (MongoDB, Express.js, React, Node.js) full-stack application desi
 
 The application is hosted on Render for reliable deployment, and testing is implemented using Supertest and Jest to ensure its functionality and reliability.
 
+<img_width = "460">
+<img_height = "auto">
+<img_half_width = "230">
+
+<p align="center">
+  <img width="{{img_width}}" height="{{img_height}}" src="./assets/homepage.jpg" alt="Homepage">
+  <br>
+  <em>Homepage</em> 
+</p>
+
+<p align="center">
+  <img width="{{img_width}}" height="{{img_height}}" src="./assets/teacher_interface.jpg" alt="Teacher Interface">
+  <br>
+  <em>Teacher Interface</em>
+</p>
+
+<p align="center">
+  <img width="{{img_half_width}}" height="{{img_height}}" src="./assets/phone_interface.jpg" alt="Phone Interface">
+  <br>
+  <em>Phone Interface</em>
+</p>
+
+<p align="center">
+  <img width="{{img_width}}" height="{{img_height}}" src="./assets/courses_page.jpg" alt="Courses Page">
+  <br>
+  <em>Courses Page</em>
+</p>
 ## Key Features
 
 - **Roles:** The platform distinguishes between "teacher" and "customer" roles, catering to both course providers and students.
