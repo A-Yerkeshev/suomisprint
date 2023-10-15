@@ -15,13 +15,13 @@ The application is hosted on Render for reliable deployment, and testing is impl
 <p align="center">
   <em>Homepage</em> 
   <br>
-  <img width="460" height="auto" src="./assets/homepage.JPG" alt="Homepage">
+  <img width="600" height="auto" src="./assets/homepage.JPG" alt="Homepage">
 </p>
 
 <p align="center">
   <em>Teacher Interface</em>
   <br>
-  <img width="460" height="auto" src="./assets/teacher_interface.JPG" alt="Teacher Interface">
+  <img width="600" height="auto" src="./assets/teacher_interface.JPG" alt="Teacher Interface">
 </p>
 
 <p align="center">
@@ -33,8 +33,39 @@ The application is hosted on Render for reliable deployment, and testing is impl
 <p align="center">
   <em>Courses Page</em>
   <br>
-  <img width="460" height="auto" src="./assets/courses_page.jpg" alt="Courses Page">
+  <img width="600" height="auto" src="./assets/courses_page.jpg" alt="Courses Page">
 </p>
+
+## Tech Stack
+
+This project is built using a versatile tech stack to provide a seamless experience for both course providers and students. The key technologies and tools include:
+
+- **Frontend**:
+
+  - **React**: A powerful JavaScript library for building user interfaces, ensuring a dynamic and interactive user experience.
+  - **Responsive Design**: The application is designed to be responsive, adapting to various screen sizes and devices for accessibility.
+
+- **Backend**:
+
+  - **Node.js**: A runtime environment that powers the server-side logic, handling requests and managing data.
+  - **Express.js**: A fast and minimalist web framework for Node.js, facilitating API development.
+  - **MongoDB**: A NoSQL database for efficient data storage and retrieval.
+  - **JWT (JSON Web Tokens)**: Used for secure authentication and authorization.
+
+- **Authentication and Security**:
+
+  - **bcrypt**: Ensures secure password hashing for user data protection.
+
+- **Testing**:
+
+  - **Supertest**: A library for testing HTTP assertions.
+  - **Jest**: A JavaScript testing framework for ensuring the reliability of the application.
+
+- **Deployment**:
+  - **Render**: The application is deployed on Render for reliable and scalable hosting.
+
+This tech stack is carefully chosen to provide a robust, secure, and user-friendly platform for online Finnish language courses. It combines frontend and backend technologies, ensuring smooth functionality and responsiveness across different devices.
+
 ## Key Features
 
 - **Roles:** The platform distinguishes between "teacher" and "customer" roles, catering to both course providers and students.
