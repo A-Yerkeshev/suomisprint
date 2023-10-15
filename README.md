@@ -36,51 +36,51 @@ The application is hosted on Render for reliable deployment, and testing is impl
   <img width="600" height="auto" src="./assets/courses_page.jpg" alt="Courses Page">
 </p>
 
-## Tech Stack
+##💻 Tech Stack
 
 This project is built using a versatile tech stack to provide a seamless experience for both course providers and students. The key technologies and tools include:
 
-- **Frontend**:
+- 🗒️ **Frontend**:
 
   - **React**: A powerful JavaScript library for building user interfaces, ensuring a dynamic and interactive user experience.
   - **Responsive Design**: The application is designed to be responsive, adapting to various screen sizes and devices for accessibility.
 
-- **Backend**:
+- 🖥️ **Backend**:
 
   - **Node.js**: A runtime environment that powers the server-side logic, handling requests and managing data.
   - **Express.js**: A fast and minimalist web framework for Node.js, facilitating API development.
   - **MongoDB**: A NoSQL database for efficient data storage and retrieval.
   - **JWT (JSON Web Tokens)**: Used for secure authentication and authorization.
 
-- **Authentication and Security**:
+- 🔒 **Authentication and Security**:
 
   - **bcrypt**: Ensures secure password hashing for user data protection.
 
-- **Testing**:
+- 🧪 **Testing**:
 
   - **Supertest**: A library for testing HTTP assertions.
   - **Jest**: A JavaScript testing framework for ensuring the reliability of the application.
 
-- **Deployment**:
+- 🌐 **Deployment**:
   - **Render**: The application is deployed on Render for reliable and scalable hosting.
 
 This tech stack is carefully chosen to provide a robust, secure, and user-friendly platform for online Finnish language courses. It combines frontend and backend technologies, ensuring smooth functionality and responsiveness across different devices.
 
 ## Key Features
 
-- **Roles:** The platform distinguishes between "teacher" and "customer" roles, catering to both course providers and students.
+- 🧑‍🏫 **Roles:** The platform distinguishes between "teacher" and "customer" roles, catering to both course providers and students.
 
-- **Course Management:** Course providers can effortlessly publish and manage their courses, complete with detailed descriptions and pricing information.
+- 📚 **Course Management:** Course providers can effortlessly publish and manage their courses, complete with detailed descriptions and pricing information.
 
-- **Responsive Design:** This application is designed to be responsive, ensuring a seamless experience on various screen sizes and devices.
+- 📱 **Responsive Design:** This application is designed to be responsive, ensuring a seamless experience on various screen sizes and devices.
 
-- **User Enrollment:** Customers can explore the course offerings, enroll in the courses they are interested in, and view their enrollment status.
+- 📝 **User Enrollment:** Customers can explore the course offerings, enroll in the courses they are interested in, and view their enrollment status.
 
-- **User Authentication:** Users must register and log in before enrolling in courses, ensuring secure access to course materials.
+- 🔐 **User Authentication:** Users must register and log in before enrolling in courses, ensuring secure access to course materials.
 
-- **Course Details:** Once logged in, users can access comprehensive information about their enrolled courses, providing a seamless learning experience.
+- ℹ️ **Course Details:** Once logged in, users can access comprehensive information about their enrolled courses, providing a seamless learning experience.
 
-- **Course History:** The platform maintains a record of users' past course history for reference and tracking.
+- 📖 **Course History:** The platform maintains a record of users' past course history for reference and tracking.
 
 This application serves as a valuable platform for both Finnish language course providers and students, streamlining course management and enhancing the learning journey.
 
@@ -90,7 +90,7 @@ Customers, course providers, site administrator, platform owner
 
 ### Prototype in Figma
 
-https://www.figma.com/file/GTU2u7swBnTu49ACFexkrY/prototype?type=design&node-id=0-1&mode=design&t=YVn3P8Gfu6CJREjR-0
+[**Prototype in Figma**](https://www.figma.com/file/GTU2u7swBnTu49ACFexkrY/prototype?type=design&node-id=0-1&mode=design&t=YVn3P8Gfu6CJREjR-0)
 
 ### User stories
 
