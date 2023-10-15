@@ -12,32 +12,28 @@ This is a MERN (MongoDB, Express.js, React, Node.js) full-stack application desi
 
 The application is hosted on Render for reliable deployment, and testing is implemented using Supertest and Jest to ensure its functionality and reliability.
 
-<img_width = "460">
-<img_height = "auto">
-<img_half_width = "230">
-
 <p align="center">
-  <img width="{{img_width}}" height="{{img_height}}" src="./assets/homepage.JPG" alt="Homepage">
-  <br>
   <em>Homepage</em> 
+  <br>
+  <img width="460" height="auto" src="./assets/homepage.JPG" alt="Homepage">
 </p>
 
 <p align="center">
-  <img width="{{img_width}}" height="{{img_height}}" src="./assets/teacher_interface.JPG" alt="Teacher Interface">
-  <br>
   <em>Teacher Interface</em>
+  <br>
+  <img width="460" height="auto" src="./assets/teacher_interface.JPG" alt="Teacher Interface">
 </p>
 
 <p align="center">
-  <img width="{{img_half_width}}" height="{{img_height}}" src="./assets/phone_interface.JPG" alt="Phone Interface">
-  <br>
   <em>Phone Interface</em>
+  <br>
+  <img width="230" height="auto" src="./assets/phone_interface.JPG" alt="Phone Interface">
 </p>
 
 <p align="center">
-  <img width="{{img_width}}" height="{{img_height}}" src="./assets/courses_page.jpg" alt="Courses Page">
-  <br>
   <em>Courses Page</em>
+  <br>
+  <img width="460" height="auto" src="./assets/courses_page.jpg" alt="Courses Page">
 </p>
 ## Key Features
 
